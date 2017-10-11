@@ -3,14 +3,46 @@ package com.servpal.android.model;
 
 public class User {
 
-    public int id;
-    String firstName;
-    String lastName;
-    String email;
+    private int id;
+    private String firstName;
+    private String lastName;
+    private String email;
 
-    int roleID;
-    String role;
+    private int roleID;
+    private String role;
 
-    String accountKey;
-    String customerKey;
+    private String accountKey;
+    private String customerKey;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public int getRoleID() {
+        return roleID;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public String getAccountKey() {
+        return accountKey;
+    }
+
+    public String getCustomerKey() {
+        return customerKey;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
 }

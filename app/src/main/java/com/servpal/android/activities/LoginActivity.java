@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                 .enqueue(new NetworkCallback<LoginResponse>() {
                     @Override
                     protected void onSuccess(LoginResponse response) {
-                        Timber.d("Returned userID: %s", response.getUser().id);
+
                     }
 
                     @Override
