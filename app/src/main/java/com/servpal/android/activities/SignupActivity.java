@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.servpal.android.R;
 import com.servpal.android.api.NetworkCallback;
 import com.servpal.android.api.ServpalHttpClient;
+import com.servpal.android.model.Message;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,9 +47,9 @@ public class SignupActivity extends AppCompatActivity {
 
         ServpalHttpClient.getService()
                 .createAccount("member", email, password, firstName, lastName, true)
-                .enqueue(new NetworkCallback<Void>() {
+                .enqueue(new NetworkCallback<Message>() {
                     @Override
-                    protected void onSuccess(Void response) {
+                    protected void onSuccess(Message response) {
                         startActivity(new Intent(SignupActivity.this, MainActivity.class));
                     }
 

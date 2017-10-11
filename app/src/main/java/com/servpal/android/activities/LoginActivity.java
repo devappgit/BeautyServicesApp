@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
      * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "servpalmobiledev@mailinator.com:password", "jesse@sandboxx.us.:sandboxx"
+            "servpalmobiledev@mailinator.com:password", "jesse@sandboxx.us:sandboxx"
     };
 
     @BindView(R.id.email)
@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
         password = passwordEditor.getText().toString().trim();
 
         ServpalHttpClient.getService()
-                .login(email, password, true)
+                .login(email, password)
                 .enqueue(new NetworkCallback<LoginResponse>() {
                     @Override
                     protected void onSuccess(LoginResponse response) {
