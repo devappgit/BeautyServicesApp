@@ -27,8 +27,8 @@ public class LaunchActivity extends AppCompatActivity {
         startActivity(new Intent(this, LoginActivity.class));
     }
 
-    @OnClick(R.id.social_button)
+    @OnClick(R.id.signup_button)
     void onSocialClicked() {
-        Timber.d("Social button is a placeholder");
+        startActivity(new Intent(this, SignupActivity.class));
     }
 }

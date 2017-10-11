@@ -1,5 +1,6 @@
 package com.servpal.android.api;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.squareup.moshi.JsonAdapter;
@@ -18,7 +19,7 @@ public abstract class NetworkCallback<T> implements Callback<T> {
 
     protected abstract void onError(Error error);
 
-    public void onResponse(Call<T> call, Response<T> response) {
+    public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
         if(response == null) {
             Timber.w("Null response");
             this.handleError(new Error(new IllegalStateException("No body returned from the server"), null));
@@ -26,6 +27,7 @@ public abstract class NetworkCallback<T> implements Callback<T> {
             //this.handleError(new Error(new Exception("Status code outside the 200-300 range"), response));
             this.handleHttpError(response);
         } else if(response.body() == null) {    // could be removed?
+            Timber.w("Empty Body");
             this.handleError(new Error(new IllegalStateException("No body returned from the server"), response));
         } else {
             this.onSuccess(response.body());
@@ -37,7 +39,6 @@ public abstract class NetworkCallback<T> implements Callback<T> {
     }
 
     private void handleError(Error error) {
-        Timber.e(error.getMessage());
         this.onError(error);
     }
 
@@ -54,15 +55,14 @@ public abstract class NetworkCallback<T> implements Callback<T> {
     public static class Error {
         transient Throwable throwable;
 
-        // possible Strings from both Sandboxx error body and GAE error body
-        String message;
+        String error;
         String state;
 
         int statusCode;
 
-        public Error(Throwable throwable, @Nullable Response response) {
+        Error(Throwable throwable, @Nullable Response response) {
             this.throwable = throwable;
-            this.message = parseErrorMessage(throwable, response);
+            this.error = parseErrorMessage(throwable, response);
             this.statusCode = parseErrorCode(response);
         }
 
@@ -71,7 +71,7 @@ public abstract class NetworkCallback<T> implements Callback<T> {
         }
 
         public String getMessage() {
-            return this.message;
+            return this.error;
         }
 
         public String getState() {

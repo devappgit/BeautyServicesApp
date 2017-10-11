@@ -1,5 +1,6 @@
 package com.servpal.android.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -52,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    @OnClick(R.id.email_sign_in_button)
+    @OnClick(R.id.email_log_in_button)
     void onSignInClicked() {
         attemptLogin();
     }
@@ -68,18 +69,21 @@ public class LoginActivity extends AppCompatActivity {
         String email = dummyCredentials[0];
         String password = dummyCredentials[1];
 
+        email = emailEditor.getText().toString().trim();
+        password = passwordEditor.getText().toString().trim();
+
         ServpalHttpClient.getService()
                 .login(email, password, true)
                 .enqueue(new NetworkCallback<LoginResponse>() {
                     @Override
                     protected void onSuccess(LoginResponse response) {
-
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     }
 
                     @Override
                     protected void onError(Error error) {
                         Timber.e(error.getMessage());
-                        Toast.makeText(LoginActivity.this, "Error on /merchant call", Toast.LENGTH_LONG);
+                        Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
     }

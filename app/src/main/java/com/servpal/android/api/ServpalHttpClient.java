@@ -34,10 +34,9 @@ public class ServpalHttpClient {
     private static synchronized OkHttpClient getClient() {
         if (client == null) {
             client = new OkHttpClient.Builder()
-                    .addInterceptor(JakeWharton())
                     .connectTimeout(10, TimeUnit.SECONDS)
                     .writeTimeout(10, TimeUnit.SECONDS)
-                    .readTimeout(30, TimeUnit.SECONDS)
+                    .readTimeout(10, TimeUnit.SECONDS)
                     .build();
         }
         return client;
@@ -47,9 +46,12 @@ public class ServpalHttpClient {
     private static synchronized Retrofit getRetrofitClient() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://dev.servpal.com/")
+                    .baseUrl("https://dev.servpal.com/")    //TODO: Before release change to Production URL
                     .addConverterFactory(MoshiConverterFactory.create())
-                    .client(getClient().newBuilder().addInterceptor(new HeaderInterceptor()).build())   // add servpal X-Requested-With header
+                    .client(getClient().newBuilder()
+                            .addInterceptor(new HeaderInterceptor())    // add servpal X-Requested-With header
+                            .addInterceptor(prettyLoggger())
+                            .build())
                     .build();
         }
         return retrofit;
