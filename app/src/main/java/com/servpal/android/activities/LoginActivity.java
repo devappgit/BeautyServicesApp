@@ -13,6 +13,7 @@ import com.servpal.android.R;
 import com.servpal.android.api.NetworkCallback;
 import com.servpal.android.api.ServpalHttpClient;
 import com.servpal.android.model.LoginResponse;
+import com.servpal.android.model.Session;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
+        // TODO: Remove dummy credentials before release
         // use dummy credentials
         String[] dummyCredentials = DUMMY_CREDENTIALS[0].split(":");
         String email = dummyCredentials[0];
@@ -77,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                 .enqueue(new NetworkCallback<LoginResponse>() {
                     @Override
                     protected void onSuccess(LoginResponse response) {
+                        Session.persist(response.getUser());
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     }
 
