@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
         password = passwordEditor.getText().toString().trim();
 
         ServpalHttpClient.getService()
-                .login(email, password)
+                .login(email, password, true)
                 .enqueue(new NetworkCallback<LoginResponse>() {
                     @Override
                     protected void onSuccess(LoginResponse response) {

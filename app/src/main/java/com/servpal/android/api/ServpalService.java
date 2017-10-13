@@ -17,5 +17,5 @@ public interface ServpalService {
 
     @FormUrlEncoded
     @POST("api/login")
-    Call<LoginResponse> login(@Field("email") String email, @Field("password") String password);
+    Call<LoginResponse> login(@Field("email") String email, @Field("password") String password, @Field("mobile") boolean mobile);
 }
