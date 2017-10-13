@@ -19,10 +19,13 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.main_button)
-    void onButtonClicked() {
+    @OnClick(R.id.logout_button)
+    void onLgoutClicked() {
         Session.clear();
-        startActivity(new Intent(this, LaunchActivity.class));
+        Intent intent = new Intent(this, LaunchActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
 
     @Override

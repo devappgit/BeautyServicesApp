@@ -80,7 +80,9 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     protected void onSuccess(LoginResponse response) {
                         Session.persist(response.getUser());
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                     }
 
                     @Override
