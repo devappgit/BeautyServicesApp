@@ -19,14 +19,14 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @Override
-    public void onBackPressed() {
-        moveTaskToBack(true);
-    }
-
     @OnClick(R.id.main_button)
     void onButtonClicked() {
         Session.clear();
         startActivity(new Intent(this, LaunchActivity.class));
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 }
