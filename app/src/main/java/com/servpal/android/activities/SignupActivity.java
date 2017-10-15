@@ -50,7 +50,9 @@ public class SignupActivity extends AppCompatActivity {
                 .enqueue(new NetworkCallback<Message>() {
                     @Override
                     protected void onSuccess(Message response) {
-                        startActivity(new Intent(SignupActivity.this, MainActivity.class));
+                        Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                     }
 
                     @Override

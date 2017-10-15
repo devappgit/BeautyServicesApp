@@ -49,7 +49,7 @@ public class ServpalHttpClient {
                     .baseUrl("https://dev.servpal.com/")    //TODO: Before release change to Production URL
                     .addConverterFactory(MoshiConverterFactory.create())
                     .client(getClient().newBuilder()
-                            .addInterceptor(new HeaderInterceptor())    // add servpal X-Requested-With header
+                            .addInterceptor(new ServpalMobileApiInterceptor())    // add servpal X-Requested-With header
                             .addInterceptor(prettyLoggger())
                             .build())
                     .build();

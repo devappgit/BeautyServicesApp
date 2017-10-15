@@ -1,6 +1,7 @@
 package com.servpal.android.api;
 
 import android.os.Build;
+import android.support.annotation.NonNull;
 
 import com.servpal.android.BuildConfig;
 
@@ -11,10 +12,13 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class HeaderInterceptor implements Interceptor {
+public class ServpalMobileApiInterceptor implements Interceptor {
     @Override
-    public Response intercept(Chain chain) throws IOException {
+    public Response intercept(@NonNull Chain chain) throws IOException {
         Request.Builder builder = chain.request().newBuilder();
+
+        // TODO: Intercept POST and GET requests, modify to have mobile=true on all requests
+        // Constant mobile=true paramter required for RESTful mobile Servpal API
 
         // Constant X-Requested-With required for RESTful Servpal API
         builder.addHeader("X-Requested-With", "XMLHttpRequest");
