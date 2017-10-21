@@ -38,6 +38,9 @@ public class SplashActivity extends AppCompatActivity {
                             startActivity(new Intent(SplashActivity.this, LaunchActivity.class));
                         }
                     });
+        } else {
+            Timber.w("User not logged in");
+            startActivity(new Intent(this, LaunchActivity.class));
         }
     }
 }
