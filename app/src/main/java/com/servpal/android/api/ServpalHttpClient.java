@@ -15,6 +15,10 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 
 public class ServpalHttpClient {
 
+    public static String baseUrl() {    // TODO: Before release change to Production URL
+        return "https://dev.servpal.com/";
+    }
+
     private static LoggingInterceptor prettyLoggger() {
         return new LoggingInterceptor.Builder()
                 .loggable(BuildConfig.DEBUG)
@@ -46,10 +50,10 @@ public class ServpalHttpClient {
     private static synchronized Retrofit getRetrofitClient() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://dev.servpal.com/")    //TODO: Before release change to Production URL
+                    .baseUrl(baseUrl())
                     .addConverterFactory(MoshiConverterFactory.create())
                     .client(getClient().newBuilder()
-                            .addInterceptor(new ServpalMobileApiInterceptor())    // add servpal X-Requested-With header
+                            .addInterceptor(new ServpalMobileApiInterceptor())    // add servpal X-Requested-With & User-Agent headers
                             .addInterceptor(prettyLoggger())
                             .build())
                     .build();

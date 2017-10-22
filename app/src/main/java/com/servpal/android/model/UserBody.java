@@ -3,8 +3,8 @@ package com.servpal.android.model;
 public class UserBody {
 
     private User user;
+    private Profile profile;
 
-    //profile
     //secondaryProfessions
     //business
     //availabilities
@@ -15,6 +15,10 @@ public class UserBody {
 
     public User getUser() {
         return this.user;
+    }
+
+    public Profile getProfile() {
+        return this.profile;
     }
 
     // UserBody is structured this way because JSON is in the format of
