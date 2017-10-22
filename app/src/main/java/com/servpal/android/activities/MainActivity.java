@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.logout_button)
-    void onLgoutClicked() {
+    void onLogoutClicked() {
         Session.clear();
         Intent intent = new Intent(this, LaunchActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
