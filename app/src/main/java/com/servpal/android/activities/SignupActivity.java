@@ -10,10 +10,12 @@ import com.servpal.android.R;
 import com.servpal.android.api.NetworkCallback;
 import com.servpal.android.api.ServpalHttpClient;
 import com.servpal.android.model.Message;
+import com.servpal.android.model.User;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Response;
 import timber.log.Timber;
 
 public class SignupActivity extends AppCompatActivity {
@@ -26,6 +28,8 @@ public class SignupActivity extends AppCompatActivity {
     EditText emailText;
     @BindView(R.id.password)
     EditText passwordText;
+
+    private String phpSess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +49,23 @@ public class SignupActivity extends AppCompatActivity {
         String email = emailText.getText().toString().trim();
         String password = emailText.getText().toString().trim();
 
+        // should build a User here? Or expect from network
+
         ServpalHttpClient.getService()
                 .createAccount("member", email, password, firstName, lastName, true)
                 .enqueue(new NetworkCallback<Message>() {
                     @Override
+                    protected void onSuccess(Response response) {
+                        // TODO: Disable/Remove when MainActivity gets native content
+                        phpSess = response.headers().get("set-cookie");
+                    }
+                    @Override
                     protected void onSuccess(Message response) {
-                        Intent intent = new Intent(SignupActivity.this, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
+                        // This should return a User or UserBody object so we can call Session.persist(user);
+
+                        //startActivity(MainActivity.newUriIntent(phpSess));
+
+                        startActivity(MainActivity.newIntent(SignupActivity.this));
                     }
 
                     @Override

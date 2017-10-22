@@ -17,8 +17,7 @@ public class ServpalMobileApiInterceptor implements Interceptor {
     public Response intercept(@NonNull Chain chain) throws IOException {
         Request.Builder builder = chain.request().newBuilder();
 
-        // TODO: Intercept POST and GET requests, modify to have mobile=true on all requests
-        // Constant mobile=true paramter required for RESTful mobile Servpal API
+        // Note: Some endpoints require mobile=true parameter for RESTful mobile Servpal API
 
         // Constant X-Requested-With required for RESTful Servpal API
         builder.addHeader("X-Requested-With", "XMLHttpRequest");

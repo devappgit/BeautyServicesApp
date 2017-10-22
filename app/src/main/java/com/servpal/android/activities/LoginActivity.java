@@ -18,6 +18,7 @@ import com.servpal.android.model.Session;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Response;
 import timber.log.Timber;
 
 public class LoginActivity extends AppCompatActivity {
@@ -34,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText emailEditor;
     @BindView(R.id.password)
     EditText passwordEditor;
+
+    private String phpSess;
 
     // TODO: If notifications are used in the app, here is where you should implement the local broadcast receiver for the device token
 
@@ -80,11 +83,16 @@ public class LoginActivity extends AppCompatActivity {
                 .login(email, password, true)
                 .enqueue(new NetworkCallback<LoginResponse>() {
                     @Override
+                    protected void onSuccess(Response response) {
+                        // TODO: Disable/Remove when MainActivity gets native content
+                        phpSess = response.headers().get("set-cookie");
+                    }
+                    @Override
                     protected void onSuccess(LoginResponse response) {
                         Session.persist(response.getBody().getUser());
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
+                        //startActivity(MainActivity.newUriIntent(phpSess));
+                        // TODO: Enable when MainActivity gets native content
+                        startActivity(MainActivity.newIntent(LoginActivity.this));
                     }
 
                     @Override

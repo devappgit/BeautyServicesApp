@@ -36,6 +36,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    // TODO: Use Chrome custom tabs instead of Intent.ACTION_VIEW
 
     // utils
     compile 'com.jakewharton.timber:timber:4.5.1'

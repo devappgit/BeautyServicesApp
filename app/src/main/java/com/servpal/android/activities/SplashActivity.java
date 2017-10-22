@@ -10,9 +10,12 @@ import com.servpal.android.api.ServpalHttpClient;
 import com.servpal.android.model.Session;
 import com.servpal.android.model.UserBody;
 
+import retrofit2.Response;
 import timber.log.Timber;
 
 public class SplashActivity extends AppCompatActivity {
+
+    private String phpSess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +31,16 @@ public class SplashActivity extends AppCompatActivity {
                     .getUser(Session.user().getId())
                     .enqueue(new NetworkCallback<UserBody>() {
                         @Override
+                        protected void onSuccess(Response response) {
+                            // TODO: Disable/Remove when MainActivity gets native content
+                            phpSess = response.headers().get("set-cookie");
+                        }
+                        @Override
                         protected void onSuccess(UserBody response) {
                             Session.persist(response.getUser());
-                            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
+                            //startActivity(MainActivity.newUriIntent(phpSess));
+                            // TODO: Enable when MainActivity gets native content
+                            startActivity(MainActivity.newIntent(SplashActivity.this));
                         }
 
                         @Override
