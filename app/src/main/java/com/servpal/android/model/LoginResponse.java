@@ -11,4 +11,13 @@ public class LoginResponse {
     public UserBody getBody() {
         return this.userBody;
     }
+
+    // LoginResponse is a UserBody wrapped in "user".  UserBody has its "user" object
+//    Body: {
+//        "user": { // UserBody obj
+//            "user": { //User obj
+//
+//            }
+//        }
+//    }
 }

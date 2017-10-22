@@ -24,7 +24,7 @@ public class UserBody {
     // UserBody is structured this way because JSON is in the format of
 //    Body: {
 //            "user": {
-//                "user": {}
+//
 //            }
 //        }
 }
