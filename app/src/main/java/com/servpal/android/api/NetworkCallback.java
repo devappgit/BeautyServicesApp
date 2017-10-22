@@ -15,6 +15,10 @@ import timber.log.Timber;
 
 public abstract class NetworkCallback<T> implements Callback<T> {
 
+    protected void onSuccess(Response<T> response) {
+
+    }
+
     protected abstract void onSuccess(T response);
 
     protected abstract void onError(Error error);
@@ -30,6 +34,7 @@ public abstract class NetworkCallback<T> implements Callback<T> {
             Timber.w("Empty Body");
             this.handleError(new Error(new IllegalStateException("No body returned from the server"), response));
         } else {
+            this.onSuccess(response);
             this.onSuccess(response.body());
         }
     }
