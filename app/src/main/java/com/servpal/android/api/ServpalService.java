@@ -3,6 +3,7 @@ package com.servpal.android.api;
 import com.servpal.android.model.LoginResponse;
 import com.servpal.android.model.Message;
 import com.servpal.android.model.User;
+import com.servpal.android.model.UserResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -15,7 +16,7 @@ import retrofit2.http.Query;
 public interface ServpalService {
 
     @GET("api/user/{user_id}")
-    Call<User> getUser(@Path("user_id") int userId);
+    Call<UserResponse> getUser(@Path("user_id") int userId);
 
     @FormUrlEncoded
     @POST("api/user")

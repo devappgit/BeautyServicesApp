@@ -29,20 +29,28 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
+    // For SharedPreferences inspection.  Go to chrome://inspect and inspect device
+    //compile 'com.facebook.stetho:stetho:1.5.0'
+
+    // support libs
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
+    // utils
     compile 'com.jakewharton.timber:timber:4.5.1'
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    compile 'org.parceler:parceler-api:1.1.9'
+    annotationProcessor 'org.parceler:parceler:1.1.9'
 
+    // networking
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-moshi:2.3.0'
     compile('com.github.ihsanbal:LoggingInterceptor:2.0.2') {
         exclude group: 'org.json', module: 'json'
     }
 
-    compile 'org.parceler:parceler-api:1.1.9'
-    annotationProcessor 'org.parceler:parceler:1.1.9'
+    // datetime
+    compile 'com.jakewharton.threetenabp:threetenabp:1.0.5'
 }

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import com.servpal.android.api.NetworkCallback;
 import com.servpal.android.api.ServpalHttpClient;
 import com.servpal.android.model.Session;
-import com.servpal.android.model.User;
+import com.servpal.android.model.UserResponse;
 
 import timber.log.Timber;
 
@@ -23,10 +23,10 @@ public class SplashActivity extends AppCompatActivity {
         if (Session.user() != null) {
             ServpalHttpClient.getService()
                     .getUser(Session.user().getId())
-                    .enqueue(new NetworkCallback<User>() {
+                    .enqueue(new NetworkCallback<UserResponse>() {
                         @Override
-                        protected void onSuccess(User response) {
-                            Session.persist(response);
+                        protected void onSuccess(UserResponse response) {
+                            Session.persist(response.getUser());
                             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
@@ -34,7 +34,7 @@ public class SplashActivity extends AppCompatActivity {
 
                         @Override
                         protected void onError(Error error) {
-                            Timber.e("Something went wrong trying to fetch the logged in user");
+                            Timber.e(error.getMessage());
                             startActivity(new Intent(SplashActivity.this, LaunchActivity.class));
                         }
                     });
