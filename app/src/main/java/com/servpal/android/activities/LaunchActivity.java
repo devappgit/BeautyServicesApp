@@ -5,11 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.servpal.android.R;
-import com.servpal.android.model.Session;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import timber.log.Timber;
 
 public class LaunchActivity extends AppCompatActivity {
 
@@ -21,10 +19,6 @@ public class LaunchActivity extends AppCompatActivity {
 
         // ideally this activity just checks logged-in state and redirects to landing page or main/content page
         // isLoggedIn ? MainActivity : LandingActivity
-
-        if (Session.user() != null) {
-            goToMainContent();
-        }
     }
 
     @OnClick(R.id.login_button)
@@ -33,13 +27,12 @@ public class LaunchActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.signup_button)
-    void onSocialClicked() {
+    void onSignupClicked() {
         startActivity(new Intent(this, SignupActivity.class));
     }
 
-    private void goToMainContent() {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 }

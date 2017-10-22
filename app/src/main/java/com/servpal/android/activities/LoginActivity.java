@@ -35,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.password)
     EditText passwordEditor;
 
+    // TODO: If notifications are used in the app, here is where you should implement the local broadcast receiver for the device token
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.email_log_in_button)
-    void onSignInClicked() {
+    void onLoginClicked() {
         attemptLogin();
     }
 

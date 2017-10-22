@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
-    android:gravity="center"
     tools:context="com.servpal.android.activities.LaunchActivity">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
+        android:gravity="center"
         tools:text="ServPal AppName" />
 
     <Button
@@ -18,13 +19,15 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Try Login Form"/>
+        android:layout_gravity="center_horizontal|bottom"
+        android:text="Try Login Form" />
 
     <Button
         android:id="@+id/signup_button"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create an account"/>
+        android:layout_gravity="center_horizontal|bottom"
+        android:text="Create an account" />
 
 </LinearLayout>
