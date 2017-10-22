@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.servpal.android.R;
 import com.servpal.android.api.NetworkCallback;
 import com.servpal.android.api.ServpalHttpClient;
 import com.servpal.android.model.Session;
@@ -16,8 +17,10 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash);
         // windowBackground is faster than contentView, background is at @drawable/background_splash
         // which is declared in SplashTheme and applied through AndroidManifest
+        // currently set with contentView since image since the logo image is hardcoded height and width
 
         // check logged-in state
         if (Session.user() != null) {
