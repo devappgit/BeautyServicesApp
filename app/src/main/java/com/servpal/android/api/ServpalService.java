@@ -13,15 +13,15 @@ import retrofit2.http.Path;
 
 public interface ServpalService {
 
-    @GET("api/user/{user_id}")
-    Call<UserBody> getUser(@Path("user_id") int userId);
+    @FormUrlEncoded
+    @POST("api/login")
+    Call<LoginResponse> login(@Field("email") String email, @Field("password") String password, @Field("mobile") boolean mobile);
 
     @FormUrlEncoded
     @POST("api/user")
     Call<Message> createAccount(@Field("role") String role, @Field("email") String email, @Field("password") String password,
                                 @Field("firstName") String firstName, @Field("lastName") String lastName, @Field("mobile") boolean mobile); // sends empty body?
 
-    @FormUrlEncoded
-    @POST("api/login")
-    Call<LoginResponse> login(@Field("email") String email, @Field("password") String password, @Field("mobile") boolean mobile);
+    @GET("api/user/{user_id}")
+    Call<UserBody> getUser(@Path("user_id") int userId);
 }

@@ -11,12 +11,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="64dp"
+        android:layout_marginTop="64dp"
         android:gravity="center"
-        tools:text="ServPal AppName" />
+        android:textSize="34sp"
+        android:textColor="@android:color/white"
+        android:text="@string/app_name" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="64dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
         android:layout_weight="1"
         android:gravity="bottom|center_horizontal"
         android:orientation="vertical">
