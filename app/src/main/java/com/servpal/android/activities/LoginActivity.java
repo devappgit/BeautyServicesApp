@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                 .enqueue(new NetworkCallback<LoginResponse>() {
                     @Override
                     protected void onSuccess(LoginResponse response) {
-                        Session.persist(response.getUser());
+                        Session.persist(response.getBody().getUser());
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
