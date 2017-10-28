@@ -1,17 +1,27 @@
 package com.servpal.android.utils;
 
 
+import android.support.annotation.NonNull;
+
+import org.threeten.bp.LocalDateTime;
 import org.threeten.bp.format.DateTimeFormatter;
 
 public class DateUtil {
 
-    public static final DateTimeFormatter dateFormat = DateTimeFormatter.BASIC_ISO_DATE;
+    // input formats
+    private static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    public static String shortFormatOf(String dateString) {
-        return "";
+    // output formats
+   private static final DateTimeFormatter shortFormat = DateTimeFormatter.ofPattern("MMM dd");
+   private static final DateTimeFormatter longFormat = DateTimeFormatter.ofPattern("E MMM dd");
+
+    public static String shortFormatOf(@NonNull String dateString) {
+        LocalDateTime dateTime = LocalDateTime.parse(dateString, dateFormat);
+        return dateTime.format(shortFormat);
     }
 
-    public static String longFormatOf(String dateString) {
-        return "";
+    public static String longFormatOf(@NonNull String dateString) {
+        LocalDateTime dateTime = LocalDateTime.parse(dateString, dateFormat);
+        return dateTime.format(longFormat);
     }
 }
