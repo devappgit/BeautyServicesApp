@@ -5,7 +5,7 @@ android {
     buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.servpal.android"
-        minSdkVersion 16    // TODO: Does it need to be this far back?  21 might be okay
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "0.1.0"
