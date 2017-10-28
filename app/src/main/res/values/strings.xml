@@ -3,6 +3,11 @@
     <string name="title_activity_login">Log in</string>
     <string name="title_activity_signup">Sign Up</string>
 
+    <!--Mock strings-->
+    <string name="lorem_ipsum_name">Lorem ipsum</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet.</string>
+    <string name="lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris orci diam, semper et diam in, tincidunt rutrum mauris. Maecenas vitae sagittis neque. Suspendisse in imperdiet leo</string>
+
     <!-- Strings related to login -->
     <string name="prompt_first_name">First Name</string>
     <string name="prompt_last_name">Last Name</string>
