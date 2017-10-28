@@ -37,6 +37,11 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+    @OnClick(R.id.provider_button)
+    void onProviderClicked() {
+        startActivity(new Intent(this, ProviderServicesActivity.class));
+    }
+
     @OnClick(R.id.logout_button)
     void onLogoutClicked() {
         Session.clear();

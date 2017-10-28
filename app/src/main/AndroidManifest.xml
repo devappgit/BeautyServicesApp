@@ -33,7 +33,9 @@
             android:name=".activities.SignupActivity"
             android:label="@string/title_activity_signup" />
         <activity android:name=".activities.MainActivity" />
-
+        <activity
+            android:name=".activities.ProviderServicesActivity"
+            android:theme="@style/AppThemeFullBleed" />
     </application>
 
 </manifest>
