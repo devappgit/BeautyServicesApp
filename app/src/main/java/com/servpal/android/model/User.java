@@ -19,11 +19,18 @@ public class User {
     private int roleID;
     private String role;
 
+    private String createdAt;
+    private String updatedAt;
+
     private String accountKey;
     private String customerKey;
 
     public int getId() {
         return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
     }
 
     public String getLastName() {
@@ -42,16 +49,20 @@ public class User {
         return role;
     }
 
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
     public String getAccountKey() {
         return accountKey;
     }
 
     public String getCustomerKey() {
         return customerKey;
-    }
-
-    public String getFirstName() {
-        return this.firstName;
     }
 
     static User fromJson(@NonNull String jsonString) {
