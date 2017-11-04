@@ -28,7 +28,7 @@ public class ServpalHttpClient {
                 .build();
     }
 
-    private static HttpLoggingInterceptor JakeWharton() {
+    private static HttpLoggingInterceptor basicLogger() {
         HttpLoggingInterceptor logger = new HttpLoggingInterceptor();
         logger.setLevel(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BASIC : HttpLoggingInterceptor.Level.NONE);
         return logger;
@@ -61,7 +61,7 @@ public class ServpalHttpClient {
         return retrofit;
     }
 
-    public static ServpalService getService() {
-        return getRetrofitClient().create(ServpalService.class);
+    public static ApiService getService() {
+        return getRetrofitClient().create(ApiService.class);
     }
 }

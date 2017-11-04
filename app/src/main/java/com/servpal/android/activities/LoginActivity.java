@@ -90,8 +90,11 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     protected void onSuccess(LoginResponse response) {
                         Session.persist(response.getBody().getUser());
+
+                        // release 1 send to CCT
                         //startActivity(MainActivity.newUriIntent(phpSess));
-                        // TODO: Enable when MainActivity gets native content
+
+                        // release 2 send to MainActivity that has native content
                         startActivity(MainActivity.newIntent(LoginActivity.this));
                     }
 

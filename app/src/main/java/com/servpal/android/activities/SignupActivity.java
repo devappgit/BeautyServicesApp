@@ -9,8 +9,8 @@ import android.widget.Toast;
 import com.servpal.android.R;
 import com.servpal.android.api.NetworkCallback;
 import com.servpal.android.api.ServpalHttpClient;
-import com.servpal.android.model.Message;
-import com.servpal.android.model.User;
+import com.servpal.android.model.Session;
+import com.servpal.android.model.UserBody;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,18 +53,20 @@ public class SignupActivity extends AppCompatActivity {
 
         ServpalHttpClient.getService()
                 .createAccount("member", email, password, firstName, lastName, true)
-                .enqueue(new NetworkCallback<Message>() {
+                .enqueue(new NetworkCallback<UserBody>() {
                     @Override
                     protected void onSuccess(Response response) {
                         // TODO: Disable/Remove when MainActivity gets native content
                         phpSess = response.headers().get("set-cookie");
                     }
                     @Override
-                    protected void onSuccess(Message response) {
-                        // This should return a User or UserBody object so we can call Session.persist(user);
+                    protected void onSuccess(UserBody response) {
+                        Session.persist(response.getUser());
 
+                        // release 1 send to CCT
                         //startActivity(MainActivity.newUriIntent(phpSess));
 
+                        // release 2 send to MainActivity that has native content
                         startActivity(MainActivity.newIntent(SignupActivity.this));
                     }
 
