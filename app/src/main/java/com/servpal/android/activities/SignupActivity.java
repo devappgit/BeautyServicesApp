@@ -49,8 +49,6 @@ public class SignupActivity extends AppCompatActivity {
         String email = emailText.getText().toString().trim();
         String password = emailText.getText().toString().trim();
 
-        // should build a User here? Or expect from network
-
         ServpalHttpClient.getService()
                 .createAccount("member", email, password, firstName, lastName, true)
                 .enqueue(new NetworkCallback<UserBody>() {
