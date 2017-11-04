@@ -1,11 +1,13 @@
 package com.servpal.android.utils;
 
 
+import android.support.annotation.NonNull;
+
 import timber.log.Timber;
 
 public class ProductionTree extends Timber.Tree {
     @Override
-    protected void log(int priority, String tag, String message, Throwable t) {
+    protected void log(int priority, String tag, @NonNull String message, Throwable t) {
 
         // by default ProductionTree logs nothing to logcat
 
