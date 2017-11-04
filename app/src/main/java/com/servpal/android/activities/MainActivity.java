@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder()
                 .setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))
                 .addMenuItem("Log out", logoutIntent)
-                .enableUrlBarHiding()
                 .setShowTitle(true);
 
         Uri uri = Uri.parse(ServpalHttpClient.baseUrl() + "professionals/find?" + phpSess); // TODO: need Uri.encode or no?
