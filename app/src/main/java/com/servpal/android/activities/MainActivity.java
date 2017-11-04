@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     // until then, use the Uri intent to send to Chrome
     public static Intent newUriIntent(String phpSess) {
-        Uri uri = Uri.parse(ServpalHttpClient.baseUrl() + "professionals/find?" + Uri.encode(phpSess));
+        Uri uri = Uri.parse(ServpalHttpClient.baseUrl() + "professionals/find?" + phpSess); // TODO: need Uri.encode or no?
         return new Intent(Intent.ACTION_VIEW, uri);
     }
 
