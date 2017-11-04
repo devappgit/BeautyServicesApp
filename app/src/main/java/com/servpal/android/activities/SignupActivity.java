@@ -28,7 +28,7 @@ public class SignupActivity extends AppCompatActivity {
     @BindView(R.id.password)
     EditText passwordText;
 
-    private String phpSess;
+    private String cookieString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +54,14 @@ public class SignupActivity extends AppCompatActivity {
                     @Override
                     protected void onSuccess(Response response) {
                         // TODO: Disable/Remove when MainActivity gets native content
-                        phpSess = response.headers().get("set-cookie");
+                        cookieString = response.headers().get("set-cookie");
                     }
                     @Override
                     protected void onSuccess(UserBody response) {
                         Session.persist(response.getUser());
 
                         // release 1 send to CCT
-                        //MainActivity.openCCT(SignupActivity.this, phpSess);
+                        MainActivity.openCCT(SignupActivity.this, cookieString);
 
                         // release 2 send to MainActivity that has native content
                         //startActivity(MainActivity.newIntent(SignupActivity.this));

@@ -12,9 +12,11 @@ import android.support.v7.app.AppCompatActivity;
 import com.servpal.android.R;
 import com.servpal.android.api.ServpalHttpClient;
 import com.servpal.android.model.Session;
+import com.servpal.android.utils.TextUtils;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Trying a CCT with some customization
-    public static void openCCT(Context context, String phpSess) {
+    public static void openCCT(Context context, String cookieString) {
         PendingIntent logoutIntent =
                 PendingIntent.getActivity(context, 0,
                         MainActivity.newIntentForLogout(context),
@@ -42,7 +44,17 @@ public class MainActivity extends AppCompatActivity {
                 .enableUrlBarHiding()
                 .setShowTitle(true);
 
-        Uri uri = Uri.parse(ServpalHttpClient.baseUrl() + "professionals/find?" + phpSess); // TODO: need Uri.encode or no?
+        String phpSessionId = TextUtils.parsePhpSessionId(cookieString);
+        Uri uri = Uri.parse(ServpalHttpClient.baseUrl())
+                .buildUpon()
+                .appendPath("professionals")
+                .appendPath("find")
+                .appendQueryParameter("PHPSESSIONID", phpSessionId)
+                //.appendQueryParameter("key", phpSessionId)
+                .build();
+
+        Timber.d(uri.toString());
+
         builder.build().launchUrl(context, uri);
     }
 

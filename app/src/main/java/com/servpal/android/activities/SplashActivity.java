@@ -15,13 +15,12 @@ import timber.log.Timber;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private String phpSess;
+    private String cookieString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        // currently set with contentView since image since the logo image is hardcoded height and width
 
         // check logged-in state
         if (Session.user() != null) {
@@ -31,13 +30,13 @@ public class SplashActivity extends AppCompatActivity {
                         @Override
                         protected void onSuccess(Response response) {
                             // TODO: Disable/Remove when MainActivity gets native content
-                            phpSess = response.headers().get("set-cookie");
+                            cookieString = response.headers().get("set-cookie");
                         }
                         @Override
                         protected void onSuccess(UserBody response) {
                             Session.persist(response.getUser());
                             // release 1 send to CCT
-                            MainActivity.openCCT(SplashActivity.this, phpSess);
+                            MainActivity.openCCT(SplashActivity.this, cookieString);
 
                             // release 2 send to MainActivity that has native content
                             //startActivity(MainActivity.newIntent(SplashActivity.this));

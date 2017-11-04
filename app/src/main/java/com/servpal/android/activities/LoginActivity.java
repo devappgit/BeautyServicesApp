@@ -22,20 +22,12 @@ import timber.log.Timber;
 
 public class LoginActivity extends AppCompatActivity {
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "servpalmobiledev@mailinator.com:password", "jesse@sandboxx.us:sandboxx"
-    };
-
     @BindView(R.id.email)
     EditText emailEditor;
     @BindView(R.id.password)
     EditText passwordEditor;
 
-    private String phpSess;
+    private String cookieString;
 
     // TODO: If notifications are used in the app, here is where you should implement the local broadcast receiver for the device token
 
@@ -69,14 +61,10 @@ public class LoginActivity extends AppCompatActivity {
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        // TODO: Remove dummy credentials before release
-        // use dummy credentials
-        String[] dummyCredentials = DUMMY_CREDENTIALS[0].split(":");
-        String email = dummyCredentials[0];
-        String password = dummyCredentials[1];
+        String email = emailEditor.getText().toString().trim();
+        String password = passwordEditor.getText().toString().trim();
 
-        email = emailEditor.getText().toString().trim();
-        password = passwordEditor.getText().toString().trim();
+        // validate here
 
         ServpalHttpClient.getService()
                 .login(email, password, true)
@@ -84,14 +72,14 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     protected void onSuccess(Response response) {
                         // TODO: Disable/Remove when MainActivity gets native content
-                        phpSess = response.headers().get("set-cookie");
+                        cookieString = response.headers().get("set-cookie");
                     }
                     @Override
                     protected void onSuccess(LoginResponse response) {
                         Session.persist(response.getBody().getUser());
 
                         // release 1 send to CCT
-                        MainActivity.openCCT(LoginActivity.this, phpSess);
+                        MainActivity.openCCT(LoginActivity.this, cookieString);
 
                         // release 2 send to MainActivity that has native content
                         //startActivity(MainActivity.newIntent(LoginActivity.this));
