@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v7.app.AppCompatActivity;
 
 import com.servpal.android.R;
@@ -12,7 +13,6 @@ import com.servpal.android.model.Session;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,8 +26,15 @@ public class MainActivity extends AppCompatActivity {
     // until then, use the Uri intent to send to Chrome
     public static Intent newUriIntent(String phpSess) {
         Uri uri = Uri.parse(ServpalHttpClient.baseUrl() + "professionals/find?" + Uri.encode(phpSess));
-        Timber.d(uri.toString());
         return new Intent(Intent.ACTION_VIEW, uri);
+    }
+
+    // until then, use the Uri intent to send to Chrome
+    public static void openCCT(Context context, String phpSess) {
+        CustomTabsIntent intent = new CustomTabsIntent.Builder().build();
+
+        Uri uri = Uri.parse(ServpalHttpClient.baseUrl() + "professionals/find?" + Uri.encode(phpSess));
+        intent.launchUrl(context, uri);
     }
 
     @Override

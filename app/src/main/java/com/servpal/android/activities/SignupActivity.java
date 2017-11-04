@@ -61,10 +61,11 @@ public class SignupActivity extends AppCompatActivity {
                         Session.persist(response.getUser());
 
                         // release 1 send to CCT
-                        //startActivity(MainActivity.newUriIntent(phpSess));
+                        //MainActivity.openCCT(SignupActivity.this, phpSess);
+                        startActivity(MainActivity.newUriIntent(phpSess));
 
                         // release 2 send to MainActivity that has native content
-                        startActivity(MainActivity.newIntent(SignupActivity.this));
+                        //startActivity(MainActivity.newIntent(SignupActivity.this));
                     }
 
                     @Override

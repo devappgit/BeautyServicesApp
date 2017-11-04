@@ -21,8 +21,6 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        // windowBackground is faster than contentView, background is at @drawable/background_splash
-        // which is declared in SplashTheme and applied through AndroidManifest
         // currently set with contentView since image since the logo image is hardcoded height and width
 
         // check logged-in state
@@ -38,9 +36,12 @@ public class SplashActivity extends AppCompatActivity {
                         @Override
                         protected void onSuccess(UserBody response) {
                             Session.persist(response.getUser());
-                            //startActivity(MainActivity.newUriIntent(phpSess));
-                            // TODO: Enable when MainActivity gets native content
-                            startActivity(MainActivity.newIntent(SplashActivity.this));
+                            // release 1 send to CCT
+                            //MainActivity.openCCT(SplashActivity.this, phpSess);
+                            startActivity(MainActivity.newUriIntent(phpSess));
+
+                            // release 2 send to MainActivity that has native content
+                            //startActivity(MainActivity.newIntent(SignupActivity.this));
                         }
 
                         @Override
