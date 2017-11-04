@@ -3,6 +3,7 @@ package com.servpal.android.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.servpal.android.R;
 import com.servpal.android.api.NetworkCallback;
@@ -45,6 +46,7 @@ public class SplashActivity extends AppCompatActivity {
                         @Override
                         protected void onError(Error error) {
                             Timber.e(error.getMessage());
+                            Toast.makeText(SplashActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
                             startActivity(new Intent(SplashActivity.this, LaunchActivity.class));
                         }
                     });
