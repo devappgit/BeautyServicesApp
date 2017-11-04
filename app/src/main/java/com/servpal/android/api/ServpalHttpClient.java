@@ -13,6 +13,15 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
+/**
+ * A class that holds a singleton {@link OkHttpClient} and singleton {@link Retrofit} services
+ *
+ * Note the addition of a {@link ServpalMobileApiInterceptor},
+ * which adds X-Requested-With and User-Agent headers on all requests going through the ApiService
+ *
+ * Try not to use the OkHttpClient directly, instead create
+ * Service interfaces like {@link ApiService}
+ */
 public class ServpalHttpClient {
 
     public static String baseUrl() {

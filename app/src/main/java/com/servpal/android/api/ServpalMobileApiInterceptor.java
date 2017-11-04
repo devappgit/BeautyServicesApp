@@ -12,6 +12,11 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
+/**
+ * This is an {@link okhttp3.Interceptor} for Servpal API
+ * A rundown of how an interceptor works: https://github.com/square/okhttp/wiki/Interceptors
+ * This interceptor will inject a header required for REST api to work and a useful User-Agent header
+ */
 public class ServpalMobileApiInterceptor implements Interceptor {
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
