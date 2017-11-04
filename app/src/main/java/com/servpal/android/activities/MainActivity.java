@@ -1,10 +1,12 @@
 package com.servpal.android.activities;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.customtabs.CustomTabsIntent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import com.servpal.android.R;
@@ -29,12 +31,27 @@ public class MainActivity extends AppCompatActivity {
         return new Intent(Intent.ACTION_VIEW, uri);
     }
 
-    // until then, use the Uri intent to send to Chrome
+    // Trying a CCT with some customization
     public static void openCCT(Context context, String phpSess) {
-        CustomTabsIntent intent = new CustomTabsIntent.Builder().build();
+        PendingIntent logoutIntent =
+                PendingIntent.getActivity(context, 0,
+                        MainActivity.newIntentForLogout(context),
+                        PendingIntent.FLAG_ONE_SHOT);
 
-        Uri uri = Uri.parse(ServpalHttpClient.baseUrl() + "professionals/find?" + Uri.encode(phpSess));
-        intent.launchUrl(context, uri);
+        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder()
+                .setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                .addMenuItem("Log out", logoutIntent)
+                .enableUrlBarHiding()
+                .setShowTitle(true);
+
+        Uri uri = Uri.parse(ServpalHttpClient.baseUrl() + "professionals/find?" + phpSess); // TODO: need Uri.encode or no?
+        builder.build().launchUrl(context, uri);
+    }
+
+    public static Intent newIntentForLogout(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra("logout", true);
+        return intent;
     }
 
     @Override
@@ -42,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        boolean shouldLogOut = getIntent().getBooleanExtra("logout", false);
+        if (shouldLogOut) {
+            onLogoutClicked();
+        }
+        // otherwise normal
     }
 
     @OnClick(R.id.provider_button)
