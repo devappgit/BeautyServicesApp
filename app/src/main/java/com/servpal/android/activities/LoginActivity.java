@@ -92,7 +92,6 @@ public class LoginActivity extends AppCompatActivity {
 
                         // release 1 send to CCT
                         MainActivity.openCCT(LoginActivity.this, phpSess);
-                        //startActivity(MainActivity.newUriIntent(phpSess));
 
                         // release 2 send to MainActivity that has native content
                         //startActivity(MainActivity.newIntent(LoginActivity.this));

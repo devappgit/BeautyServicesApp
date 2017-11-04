@@ -38,7 +38,6 @@ public class SplashActivity extends AppCompatActivity {
                             Session.persist(response.getUser());
                             // release 1 send to CCT
                             MainActivity.openCCT(SplashActivity.this, phpSess);
-                            //startActivity(MainActivity.newUriIntent(phpSess));
 
                             // release 2 send to MainActivity that has native content
                             //startActivity(MainActivity.newIntent(SplashActivity.this));

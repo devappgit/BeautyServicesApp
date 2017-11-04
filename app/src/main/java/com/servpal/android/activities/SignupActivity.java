@@ -62,7 +62,6 @@ public class SignupActivity extends AppCompatActivity {
 
                         // release 1 send to CCT
                         //MainActivity.openCCT(SignupActivity.this, phpSess);
-                        startActivity(MainActivity.newUriIntent(phpSess));
 
                         // release 2 send to MainActivity that has native content
                         //startActivity(MainActivity.newIntent(SignupActivity.this));

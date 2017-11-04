@@ -18,17 +18,15 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Bundle keys
+    private static final String LOGOUT = "logout";
+    private static final String PHPSESS = "phpSession";
+
     // When MainActivity gets native content, use this intent factory
     public static Intent newIntent(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         return intent;
-    }
-
-    // until then, use the Uri intent to send to Chrome
-    public static Intent newUriIntent(String phpSess) {
-        Uri uri = Uri.parse(ServpalHttpClient.baseUrl() + "professionals/find?" + phpSess); // TODO: need Uri.encode or no?
-        return new Intent(Intent.ACTION_VIEW, uri);
     }
 
     // Trying a CCT with some customization
@@ -49,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static Intent newIntentForLogout(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
-        intent.putExtra("logout", true);
+        intent.putExtra(LOGOUT, true);
         return intent;
     }
 
@@ -59,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        boolean shouldLogOut = getIntent().getBooleanExtra("logout", false);
+        boolean shouldLogOut = getIntent().getBooleanExtra(LOGOUT, false);
         if (shouldLogOut) {
             onLogoutClicked();
         }
