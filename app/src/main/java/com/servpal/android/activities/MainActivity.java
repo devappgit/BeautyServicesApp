@@ -69,12 +69,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // CCT is configured to log out via PendingIntent to MainActivity
+        // When a CCT is no longer needed, you also no longer need to check the bundle extra and log out from here
         boolean shouldLogOut = getIntent().getBooleanExtra(LOGOUT, false);
         if (shouldLogOut) {
             onLogoutClicked();
         }
-        // otherwise normal
     }
 
     @OnClick(R.id.provider_button)
