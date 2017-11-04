@@ -18,6 +18,8 @@ public class ServpalMobileApiInterceptor implements Interceptor {
         Request.Builder builder = chain.request().newBuilder();
 
         // Note: Some endpoints require mobile=true parameter for RESTful mobile Servpal API
+        // If you want to, you can intercept POST calls (check with request.method()) and append mobile=true urlencoded field
+        // https://stackoverflow.com/questions/34791244/retrofit2-modifying-request-body-in-okhttp-interceptor
 
         // Constant X-Requested-With required for RESTful Servpal API
         builder.addHeader("X-Requested-With", "XMLHttpRequest");
