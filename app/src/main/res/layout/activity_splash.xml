@@ -8,6 +8,6 @@
         android:layout_width="256dp"
         android:layout_height="256dp"
         android:layout_centerInParent="true"
-        android:src="@drawable/servpal_logo" />
+        android:src="@drawable/servpal_logo_text" />
 
 </RelativeLayout>
