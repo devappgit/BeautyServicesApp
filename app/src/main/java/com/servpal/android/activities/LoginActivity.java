@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(MainActivity.newUriIntent(phpSess));
 
                         // release 2 send to MainActivity that has native content
-                        startActivity(MainActivity.newIntent(LoginActivity.this));
+                        //startActivity(MainActivity.newIntent(LoginActivity.this));
                     }
 
                     @Override
