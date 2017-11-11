@@ -46,7 +46,7 @@ public class SplashActivity extends AppCompatActivity {
                         @Override
                         protected void onError(Error error) {
                             Timber.e(error.getMessage());
-                            Toast.makeText(SplashActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(SplashActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(SplashActivity.this, LaunchActivity.class));
                         }
                     });

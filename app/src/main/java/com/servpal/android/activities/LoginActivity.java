@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     protected void onError(Error error) {
                         Timber.e(error.getMessage());
-                        Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }

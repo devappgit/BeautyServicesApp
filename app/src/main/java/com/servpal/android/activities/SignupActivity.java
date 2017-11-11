@@ -70,7 +70,7 @@ public class SignupActivity extends AppCompatActivity {
                     @Override
                     protected void onError(Error error) {
                         Timber.e(error.getMessage());
-                        Toast.makeText(SignupActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignupActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
