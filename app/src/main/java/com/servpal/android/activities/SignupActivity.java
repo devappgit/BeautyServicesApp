@@ -45,7 +45,7 @@ public class SignupActivity extends AppCompatActivity {
     private void attemptSignup() {
         String firstName = firstNameText.getText().toString().trim();
         String lastName = lastNameText.getText().toString().trim();
-        String email = emailText.getText().toString().trim();
+        String email = emailText.getText().toString().toLowerCase().trim();
         String password = emailText.getText().toString().trim();
 
         ServpalHttpClient.getService()
