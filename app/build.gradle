@@ -15,7 +15,7 @@ android {
         release {   // currently using debug.keystore
             keyAlias 'androiddebugkey'
             keyPassword 'android'
-            storeFile file('/Users/jessexx/.android/debug.keystore')    // project.gradle.gradleUserHomeDir
+            storeFile file(System.getProperty("user.home").toString() + '/.android/debug.keystore')    // project.gradle.gradleUserHomeDir
             storePassword 'android'
         }
     }
