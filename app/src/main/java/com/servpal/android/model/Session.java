@@ -5,16 +5,24 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
+import com.servpal.android.BuildConfig;
+
 public class Session {
 
     private final static String prefs_file = "Servpal_Prefs";
+    private final static String prefs_file_dev = "Servpal_Prefs_Dev";
+
     private final static String USER = "user";
     private static SharedPreferences prefs;
 
     private static User user;
 
+    public static String getPrefsForConfig() {
+        return BuildConfig.DEBUG ? prefs_file : prefs_file_dev;
+    }
+
     public static void initialize(@NonNull Context context) {
-        prefs = context.getSharedPreferences(prefs_file, Context.MODE_PRIVATE);
+        prefs = context.getSharedPreferences(getPrefsForConfig(), Context.MODE_PRIVATE);
 
         user = User.fromJson(prefs.getString(USER, ""));
     }
