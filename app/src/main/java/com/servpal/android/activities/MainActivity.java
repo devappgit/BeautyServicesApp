@@ -77,8 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         // CCT is configured to log out via PendingIntent to MainActivity
         // When a CCT is no longer needed, you also no longer need to check the bundle extra and log out from here
-        boolean shouldLogOut = getIntent().getBooleanExtra(LOGOUT, false);
-        if (shouldLogOut) {
+        if (getIntent().getBooleanExtra(LOGOUT, false)) {
             onLogoutClicked();
         }
     }
