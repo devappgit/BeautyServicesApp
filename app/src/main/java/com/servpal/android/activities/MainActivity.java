@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 .appendPath("professionals")
                 .appendPath("find")
                 .appendQueryParameter("PHPSESSIONID", phpSessionId)
-                //.appendQueryParameter("key", phpSessionId)
+                .appendQueryParameter("key", phpSessionId)  // TODO: Remove the redundant key
                 .build();
 
         Timber.d(uri.toString());
