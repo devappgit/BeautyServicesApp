@@ -30,7 +30,7 @@ public class ServpalMobileApiInterceptor implements Interceptor {
         builder.addHeader("X-Requested-With", "XMLHttpRequest");
 
         // https://developers.google.com/app-conversion-tracking/api/request-response-specs
-        // Servpal/3.4.4 (Android 7.1.2; en_US; Nexus5X; Build/N2G48C)
+        // Servpal/0.1.0 (Android 7.1.2; en_US; Nexus5X; Build/N2G48C)
         String analyticsUserAgent = "Servpal/" + BuildConfig.VERSION_NAME +
                 " (" +
                 "Android " + Build.VERSION.RELEASE + "; " +
