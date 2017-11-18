@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
     // Bundle keys
     private static final String LOGOUT = "logout";
-    private static final String PHPSESS = "phpSession";
 
     // When MainActivity gets native content, use this intent factory
     public static Intent newIntent(Context context) {
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         return intent;
     }
 
-    // Trying a CCT with some customization
+    @Deprecated
     public static void openCCT(Context context, String cookieString) {
         PendingIntent logoutIntent =
                 PendingIntent.getActivity(context, 0,
@@ -58,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         builder.build().launchUrl(context, uri);
     }
 
+    @Deprecated
     public static Intent newIntentForLogout(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         intent.putExtra(LOGOUT, true);

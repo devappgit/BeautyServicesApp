@@ -17,7 +17,6 @@ import com.servpal.android.model.Session;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Response;
 import timber.log.Timber;
 
 public class LoginActivity extends AppCompatActivity {
@@ -26,8 +25,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText emailEditor;
     @BindView(R.id.password)
     EditText passwordEditor;
-
-    private String cookieString;
 
     // TODO: If notifications are used in the app, here is where you should implement the local broadcast receiver for the device token
 
@@ -70,19 +67,9 @@ public class LoginActivity extends AppCompatActivity {
                 .login(email, password, true)
                 .enqueue(new NetworkCallback<LoginResult>() {
                     @Override
-                    protected void onSuccess(Response response) {
-                        // TODO: Disable/Remove when MainActivity gets native content
-                        cookieString = response.headers().get("set-cookie");
-                    }
-                    @Override
                     protected void onSuccess(LoginResult response) {
                         Session.persist(response.getBody().getUser());
-
-                        // release 1 send to CCT
-                        MainActivity.openCCT(LoginActivity.this, cookieString);
-
-                        // release 2 send to MainActivity that has native content
-                        //startActivity(MainActivity.newIntent(LoginActivity.this));
+                        startActivity(MainActivity.newIntent(LoginActivity.this));
                     }
 
                     @Override
