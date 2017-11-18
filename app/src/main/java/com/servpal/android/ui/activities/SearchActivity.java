@@ -42,10 +42,30 @@ public class SearchActivity extends AbsRecyclerActivity {
         return ServpalHttpClient.getService().findProfessionals(query);
     }
 
+    private void refresh() {
+        callProfessionalsSearch(null)
+                .enqueue(new NetworkCallback<SearchResult>() {
+                    @Override
+                    protected void onSuccess(SearchResult response) {
+                        adapter.addAll(response.getProfessionals());
+                    }
+
+                    @Override
+                    protected void onError(Error error) {
+                        Timber.e(error.getMessage());
+                    }
+                });
+    }
+
+    private void iterate() {
+        // call iterate with page
+    }
+
     @Override
     protected void onRefresh() {
         Timber.d("Refresh triggered");
-
+        adapter.clear();
+        refresh();
         getRefreshLayout().setRefreshing(false);
     }
 
