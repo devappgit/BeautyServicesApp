@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 .enqueue(new NetworkCallback<SearchResult>() {
                     @Override
                     protected void onSuccess(SearchResult response) {
-
+                        Timber.d("Professionals list size: %s", response.getProfessionals().size());
                     }
 
                     @Override
