@@ -1,5 +1,15 @@
 apply plugin: 'com.android.application'
 
+@SuppressWarnings("GrMethodMayBeStatic")
+def gitBranch() {
+    def branch = ''
+    def proc = 'git rev-parse --abbrev-ref HEAD'.execute()
+    proc.in.eachLine { line -> branch = line }
+    proc.err.eachLine { line -> println line }
+    proc.waitFor()
+    branch
+}
+
 android {
     compileSdkVersion 26
     buildToolsVersion "27.0.1"
@@ -22,6 +32,8 @@ android {
     buildTypes {
         debug {
             debuggable true
+            applicationIdSuffix ".debug"
+            versionNameSuffix 'DEBUG ( ' + gitBranch() + ')'
         }
         release {
             minifyEnabled false
