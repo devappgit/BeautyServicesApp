@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.servpal.android.R;
 import com.servpal.android.api.NetworkCallback;
 import com.servpal.android.api.ServpalHttpClient;
-import com.servpal.android.model.LoginResponse;
+import com.servpal.android.model.LoginResult;
 import com.servpal.android.model.Session;
 
 import butterknife.BindView;
@@ -68,14 +68,14 @@ public class LoginActivity extends AppCompatActivity {
 
         ServpalHttpClient.getService()
                 .login(email, password, true)
-                .enqueue(new NetworkCallback<LoginResponse>() {
+                .enqueue(new NetworkCallback<LoginResult>() {
                     @Override
                     protected void onSuccess(Response response) {
                         // TODO: Disable/Remove when MainActivity gets native content
                         cookieString = response.headers().get("set-cookie");
                     }
                     @Override
-                    protected void onSuccess(LoginResponse response) {
+                    protected void onSuccess(LoginResult response) {
                         Session.persist(response.getBody().getUser());
 
                         // release 1 send to CCT

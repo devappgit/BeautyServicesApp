@@ -1,6 +1,6 @@
 package com.servpal.android.api;
 
-import com.servpal.android.model.LoginResponse;
+import com.servpal.android.model.LoginResult;
 import com.servpal.android.model.SearchResult;
 import com.servpal.android.model.UserBody;
 
@@ -15,7 +15,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("api/login")
-    Call<LoginResponse> login(@Field("email") String email, @Field("password") String password, @Field("mobile") boolean mobile);
+    Call<LoginResult> login(@Field("email") String email, @Field("password") String password, @Field("mobile") boolean mobile);
 
     @FormUrlEncoded
     @POST("api/user")
