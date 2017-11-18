@@ -33,7 +33,7 @@ android {
         debug {
             debuggable true
             applicationIdSuffix ".debug"
-            versionNameSuffix 'DEBUG ( ' + gitBranch() + ')'
+            versionNameSuffix ' DEBUG (' + gitBranch() + ')'
         }
         release {
             minifyEnabled false
