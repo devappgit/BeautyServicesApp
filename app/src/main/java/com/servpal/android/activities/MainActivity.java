@@ -6,10 +6,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.servpal.android.R;
+import com.servpal.android.api.NetworkCallback;
+import com.servpal.android.api.ServpalHttpClient;
+import com.servpal.android.model.SearchResult;
 import com.servpal.android.model.Session;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +28,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        ServpalHttpClient.getService().findProfessionals()
+                .enqueue(new NetworkCallback<SearchResult>() {
+                    @Override
+                    protected void onSuccess(SearchResult response) {
+
+                    }
+
+                    @Override
+                    protected void onError(Error error) {
+                        Timber.e(error.getMessage());
+                    }
+                });
     }
 
     @OnClick(R.id.provider_button)

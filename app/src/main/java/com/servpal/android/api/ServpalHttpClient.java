@@ -25,7 +25,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 public class ServpalHttpClient {
 
     @SuppressWarnings("ConstantConditions")
-    public static String baseUrl() {
+    private static String baseUrl() {
         return BuildConfig.DEV ? "https://dev.servpal.com/" : "https://www.servpal.com/";
     }
 
@@ -64,7 +64,7 @@ public class ServpalHttpClient {
                     .addConverterFactory(MoshiConverterFactory.create())
                     .client(getClient().newBuilder()
                             .addInterceptor(new ServpalMobileApiInterceptor())    // add servpal X-Requested-With & User-Agent headers
-                            .addInterceptor(prettyLoggger())
+                            .addInterceptor(basicLogger())
                             .build())
                     .build();
         }
