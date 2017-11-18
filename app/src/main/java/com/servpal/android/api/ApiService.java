@@ -1,6 +1,7 @@
 package com.servpal.android.api;
 
 import com.servpal.android.model.LoginResponse;
+import com.servpal.android.model.SearchResult;
 import com.servpal.android.model.UserBody;
 
 import retrofit2.Call;
@@ -23,4 +24,7 @@ public interface ApiService {
 
     @GET("api/user/{user_id}")
     Call<UserBody> getUser(@Path("user_id") int userId);
+
+    @GET("professionals/find")
+    Call<SearchResult> findProfessionals();
 }
