@@ -17,8 +17,9 @@ public class Session {
 
     private static User user;
 
-    public static String getPrefsForConfig() {
-        return BuildConfig.DEBUG ? prefs_file : prefs_file_dev;
+    @SuppressWarnings("ConstantConditions")
+    private static String getPrefsForConfig() {
+        return BuildConfig.DEV ? prefs_file : prefs_file_dev;
     }
 
     public static void initialize(@NonNull Context context) {

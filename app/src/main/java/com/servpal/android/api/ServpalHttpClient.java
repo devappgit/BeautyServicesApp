@@ -24,8 +24,9 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
  */
 public class ServpalHttpClient {
 
+    @SuppressWarnings("ConstantConditions")
     public static String baseUrl() {
-        return BuildConfig.DEBUG ? "https://dev.servpal.com/" : "https://www.servpal.com/";
+        return BuildConfig.DEV ? "https://dev.servpal.com/" : "https://www.servpal.com/";
     }
 
     private static LoggingInterceptor prettyLoggger() {

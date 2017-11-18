@@ -38,6 +38,18 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+    flavorDimensions "api"
+    productFlavors {
+        dev {
+            dimension "api"
+            buildConfigField "boolean", "DEV", "true"
+        }
+        prod {
+            dimension "api"
+            buildConfigField "boolean", "DEV", "false"
         }
     }
 }
