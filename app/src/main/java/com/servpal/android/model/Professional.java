@@ -20,7 +20,7 @@ public class Professional {
     //twitter
     private int locationID;
     private float distance;
-    private int reviewsCount;
+    private transient int reviewsCount; // currently server response is Nullable
     private int rating;
 
     // Address
@@ -28,8 +28,8 @@ public class Professional {
     private String state;
     private String zip;
 
-    private String latitude;    // could be floats?
-    private String longitude;
+    private double latitude;
+    private double longitude;
 
     public int getId() {
         return id;

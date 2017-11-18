@@ -1,4 +1,4 @@
-package com.servpal.android.activities;
+package com.servpal.android.ui.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;

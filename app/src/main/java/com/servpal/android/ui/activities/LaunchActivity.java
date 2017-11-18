@@ -1,14 +1,19 @@
-package com.servpal.android.activities;
+package com.servpal.android.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.servpal.android.R;
+import com.servpal.android.ui.activities.LoginActivity;
+import com.servpal.android.ui.activities.SignupActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * Activity displays the App Logo and Login/Signup buttons
+ */
 public class LaunchActivity extends AppCompatActivity {
 
     @Override
@@ -16,9 +21,6 @@ public class LaunchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
         ButterKnife.bind(this);
-
-        // ideally this activity just checks logged-in state and redirects to landing page or main/content page
-        // isLoggedIn ? MainActivity : LandingActivity
     }
 
     @OnClick(R.id.login_button)
