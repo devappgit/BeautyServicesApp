@@ -72,7 +72,6 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
     // TODO: google-services libs
-//    implementation 'com.google.android.gms:play-services-identity:11.6.0'   // SSO
 //    implementation 'com.google.android.gms:play-services-analytics:11.6.0'  // analytics
 //    implementation 'com.google.android.gms:play-services-gcm:11.6.0' // GCM or FCM?
 //    implementation 'com.google.android.gms:play-services-location:11.6.0'   // location
