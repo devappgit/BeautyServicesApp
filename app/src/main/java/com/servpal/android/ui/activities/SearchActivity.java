@@ -1,39 +1,33 @@
 package com.servpal.android.ui.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
-import com.servpal.android.R;
 import com.servpal.android.adapter.SearchResultAdapter;
 import com.servpal.android.api.NetworkCallback;
 import com.servpal.android.api.ServpalHttpClient;
 import com.servpal.android.model.SearchResult;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import java.util.Collections;
+
 import timber.log.Timber;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AbsRecyclerActivity {
 
-    @BindView(R.id.recycler) RecyclerView recycler;
+    private SearchResultAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
-        ButterKnife.bind(this);
 
-        recycler.setLayoutManager(new LinearLayoutManager(this));
-
+        adapter = new SearchResultAdapter(Collections.emptyList());
+        getRecycler().setAdapter(adapter);
 
         ServpalHttpClient.getService().findProfessionals(null)
                 .enqueue(new NetworkCallback<SearchResult>() {
                     @Override
                     protected void onSuccess(SearchResult response) {
-                        SearchResultAdapter adapter = new SearchResultAdapter(response.getProfessionals());
-                        recycler.setAdapter(adapter);
+                        adapter = new SearchResultAdapter(response.getProfessionals());
+                        getRecycler().setAdapter(adapter);
                     }
 
                     @Override
@@ -41,6 +35,17 @@ public class SearchActivity extends AppCompatActivity {
                         Timber.e(error.getMessage());
                     }
                 });
+    }
+
+    @Override
+    protected void onRefresh() {
+        Timber.d("Refresh triggered");
+        getRefreshLayout().setRefreshing(false);
+    }
+
+    @Override
+    protected void onPagination() {
+        Timber.d("Paginate triggered");
     }
 
 }
