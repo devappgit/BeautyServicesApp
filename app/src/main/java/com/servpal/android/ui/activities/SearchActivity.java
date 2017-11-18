@@ -5,10 +5,12 @@ import android.os.Bundle;
 import com.servpal.android.adapter.SearchResultAdapter;
 import com.servpal.android.api.NetworkCallback;
 import com.servpal.android.api.ServpalHttpClient;
+import com.servpal.android.model.Professional;
 import com.servpal.android.model.SearchResult;
 
 import java.util.Collections;
 
+import retrofit2.Call;
 import timber.log.Timber;
 
 public class SearchActivity extends AbsRecyclerActivity {
@@ -22,7 +24,7 @@ public class SearchActivity extends AbsRecyclerActivity {
         adapter = new SearchResultAdapter(Collections.emptyList());
         getRecycler().setAdapter(adapter);
 
-        ServpalHttpClient.getService().findProfessionals(null)
+        callProfessionalsSearch(null)
                 .enqueue(new NetworkCallback<SearchResult>() {
                     @Override
                     protected void onSuccess(SearchResult response) {
@@ -35,6 +37,10 @@ public class SearchActivity extends AbsRecyclerActivity {
                         Timber.e(error.getMessage());
                     }
                 });
+    }
+
+    private Call<SearchResult> callProfessionalsSearch(String query) {
+        return ServpalHttpClient.getService().findProfessionals(query);
     }
 
     @Override
