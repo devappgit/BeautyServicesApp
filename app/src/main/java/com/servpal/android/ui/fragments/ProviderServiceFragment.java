@@ -1,4 +1,4 @@
-package com.servpal.android.fragments;
+package com.servpal.android.ui.fragments;
 
 import android.content.Context;
 import android.net.Uri;
