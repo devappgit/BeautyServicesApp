@@ -12,7 +12,7 @@ public class Professional {
     private String firstName;
     private String lastName;
     private String profession;
-    private String business;    // what's the difference between this and profession?
+    private String business;    // represents business title
     private String avatar;
     private String description;
     //website;
@@ -31,6 +31,8 @@ public class Professional {
     private double latitude;
     private double longitude;
 
+    private String location;
+
     public int getId() {
         return id;
     }
@@ -45,6 +47,10 @@ public class Professional {
 
     public String getProfession() {
         return profession;
+    }
+
+    public String getBusiness() {
+        return business;
     }
 
     public String getAvatar() {
@@ -77,5 +83,9 @@ public class Professional {
 
     public String getZip() {
         return zip;
+    }
+
+    public String getLocation() {
+        return location;
     }
 }
