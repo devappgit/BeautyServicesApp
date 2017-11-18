@@ -37,6 +37,7 @@
         <activity
             android:name=".ui.activities.ProviderServicesActivity"
             android:theme="@style/AppThemeFullBleed" />
+        <activity android:name=".ui.activities.SearchActivity" />
 
         <meta-data
             android:name="io.fabric.ApiKey"
