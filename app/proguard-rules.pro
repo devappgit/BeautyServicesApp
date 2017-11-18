@@ -21,7 +21,10 @@
 #-renamesourcefileattribute SourceFile
 
 
-# Retrofit
+## Retrofit
 -keep class com.servpal.android.model.** { *; }
 # ^ ProGuard likes to strip out models that are used by Retrofit because they aren't explicitly instantiated.
 # Make sure they're kept in the apk if minify is enabled
+
+-keep class com.servpal.android.api.** { *; }
+# ^ ProGuard also likes removing annonymous inner classes like callbacks since they're not explicity instantiated.
