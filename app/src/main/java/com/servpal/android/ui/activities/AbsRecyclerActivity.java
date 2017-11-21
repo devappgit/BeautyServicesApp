@@ -16,7 +16,7 @@ public abstract class AbsRecyclerActivity extends AppCompatActivity {
     private RecyclerView recycler;
 
     @Override
-    protected final void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler);
 
