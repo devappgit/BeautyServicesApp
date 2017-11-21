@@ -25,6 +25,7 @@ public abstract class AbsRecyclerActivity extends AppCompatActivity {
 
         // set default layout manager
         recycler.setLayoutManager(getLayoutManager());
+        //recycler.setItemAnimator(new DefaultItemAnimator()); // is this necessary?
 
         // attach listeners to abstract methods
         refreshLayout.setOnRefreshListener(this::onRefresh);

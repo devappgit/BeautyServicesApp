@@ -26,6 +26,6 @@ public interface ApiService {
     @GET("api/user/{user_id}")
     Call<UserBody> getUser(@Path("user_id") int userId);
 
-    @GET("professionals/find")
-    Call<SearchResult> findProfessionals(@Query("search") String query);
+    @GET("professionals/find/{page}")
+    Call<SearchResult> findProfessionals(@Path("page") int page, @Query("search") String query);
 }
