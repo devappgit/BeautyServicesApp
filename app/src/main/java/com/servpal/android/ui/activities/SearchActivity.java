@@ -14,13 +14,15 @@ import timber.log.Timber;
 
 public class SearchActivity extends AbsRecyclerActivity {
 
+    private static final int PAGE_START = 1;
+
     private SearchPagingAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        adapter = new SearchPagingAdapter();
+        adapter = new SearchPagingAdapter(this);
         adapter.setResults(new ArrayList<>());
         getRecycler().setAdapter(adapter);
 
@@ -33,7 +35,7 @@ public class SearchActivity extends AbsRecyclerActivity {
 
     private void loadFirstPage() {
         getRefreshLayout().setRefreshing(true);
-        callProfessionalsSearch(1, null)
+        callProfessionalsSearch(PAGE_START, null)
                 .enqueue(new NetworkCallback<SearchResult>() {
                     @Override
                     protected void onSuccess(SearchResult response) {
@@ -49,9 +51,27 @@ public class SearchActivity extends AbsRecyclerActivity {
                 });
     }
 
+    private void loadNextPage() {
+        adapter.addLoadingFooter();
+        callProfessionalsSearch(PAGE_START, null)
+                .enqueue(new NetworkCallback<SearchResult>() {
+                    @Override
+                    protected void onSuccess(SearchResult response) {
+                        adapter.addAll(response.getProfessionals());
+                        adapter.removeLoadingFooter();
+                    }
+
+                    @Override
+                    protected void onError(Error error) {
+                        adapter.removeLoadingFooter();
+                        Timber.e(error.getMessage());
+                    }
+                });
+    }
+
     private void refresh() {
         adapter.clear();
-        callProfessionalsSearch(1, null)
+        callProfessionalsSearch(PAGE_START, null)
                 .enqueue(new NetworkCallback<SearchResult>() {
                     @Override
                     protected void onSuccess(SearchResult response) {
@@ -76,6 +96,7 @@ public class SearchActivity extends AbsRecyclerActivity {
     @Override
     protected void onPagination() {
         Timber.d("Paginate triggered");
+        loadNextPage();
     }
 
 }

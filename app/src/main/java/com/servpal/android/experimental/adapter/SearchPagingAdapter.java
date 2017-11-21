@@ -1,13 +1,17 @@
 package com.servpal.android.experimental.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.servpal.android.R;
+import com.servpal.android.api.ServpalHttpClient;
 import com.servpal.android.model.Professional;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +27,11 @@ public class SearchPagingAdapter extends RecyclerView.Adapter {
 
     private boolean isLoadingAdded;
 
+    private Context context;
     private List<Professional> list;
 
-    public SearchPagingAdapter() {
+    public SearchPagingAdapter(Context context) {
+        this.context = context;
         list = new ArrayList<>();
     }
 
@@ -58,6 +64,10 @@ public class SearchPagingAdapter extends RecyclerView.Adapter {
         switch(getItemViewType(position)) {
             case ITEM:
                 final ItemVH item = (ItemVH) holder;
+
+                Picasso.with(context)
+                        .load(ServpalHttpClient.baseUrl() + pro.getAvatar())
+                        .into(item.image);
 
                 item.title.setText(pro.getBusiness());
                 item.subTitle.setText(pro.getProfession());
@@ -138,6 +148,8 @@ public class SearchPagingAdapter extends RecyclerView.Adapter {
         TextView subTitle;
         @BindView(R.id.caption)
         TextView caption;
+        @BindView(R.id.image)
+        ImageView image;
 
         ItemVH(View itemView) {
             super(itemView);

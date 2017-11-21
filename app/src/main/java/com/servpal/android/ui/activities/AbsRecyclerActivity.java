@@ -8,11 +8,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.servpal.android.R;
+import com.servpal.android.experimental.listener.PaginationScrollListener;
 
 public abstract class AbsRecyclerActivity extends AppCompatActivity {
 
     private SwipeRefreshLayout refreshLayout;
     private RecyclerView recycler;
+
+    private boolean loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +32,39 @@ public abstract class AbsRecyclerActivity extends AppCompatActivity {
 
         // attach listeners to abstract methods
         refreshLayout.setOnRefreshListener(this::onRefresh);
-        // TODO: Scroll Listener for pagination
+        recycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                int visibleItemCount = getLayoutManager().getChildCount();
+                int totalItemCount = getLayoutManager().getItemCount();
+                int firstVisibleItemPosition = getLayoutManager().findFirstVisibleItemPosition();
+
+                if (!isLoading() && hasMore()) {
+                    if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount
+                            && firstVisibleItemPosition >= 0
+                            && totalItemCount >= getTotalPageCount()) {
+                        onPagination();
+                    }
+                }
+            }
+        });
     }
 
-    /**
-     * Override {#getLayoutManager()} if you want to use something other than {@link LinearLayoutManager}
-     * @return {@link RecyclerView.LayoutManager}
-     */
-    protected RecyclerView.LayoutManager getLayoutManager() {
+    private boolean isLoading() {
+        return false;
+    }
+
+    private boolean hasMore() {
+        return true;
+    }
+
+    private int getTotalPageCount() {
+        return 28;
+    }
+
+    protected LinearLayoutManager getLayoutManager() {
         return new LinearLayoutManager(this);
     }
 
@@ -46,6 +74,14 @@ public abstract class AbsRecyclerActivity extends AppCompatActivity {
 
     protected RecyclerView getRecycler() {
         return recycler;
+    }
+
+    protected void setRefreshing(boolean refreshing) {
+        refreshLayout.setRefreshing(false);
+    }
+
+    protected void setLoading(boolean loading) {
+        this.loading = loading;
     }
 
     protected abstract void onRefresh();
