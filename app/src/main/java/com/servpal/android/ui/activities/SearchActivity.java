@@ -2,7 +2,7 @@ package com.servpal.android.ui.activities;
 
 import android.os.Bundle;
 
-import com.servpal.android.adapter.PagingAdapterImpl;
+import com.servpal.android.adapter.SearchProfessionalsAdapter;
 import com.servpal.android.api.NetworkCallback;
 import com.servpal.android.api.ServpalHttpClient;
 import com.servpal.android.model.SearchResult;
@@ -19,13 +19,13 @@ public class SearchActivity extends AbsRecyclerActivity {
 
     private boolean loadingMore = false;
 
-    private PagingAdapterImpl adapter;
+    private SearchProfessionalsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        adapter = new PagingAdapterImpl(this);
+        adapter = new SearchProfessionalsAdapter(this);
         getRecycler().setAdapter(adapter);
 
         loadFirstPage();
@@ -66,8 +66,8 @@ public class SearchActivity extends AbsRecyclerActivity {
                 .enqueue(new NetworkCallback<SearchResult>() {
                     @Override
                     protected void onSuccess(SearchResult response) {
-                        adapter.addAll(response.getProfessionals());
                         adapter.removeLoadingFooter();
+                        adapter.addAll(response.getProfessionals());
 
                         if (response.hasMore()) {
                             adapter.addLoadingFooter();
@@ -95,6 +95,10 @@ public class SearchActivity extends AbsRecyclerActivity {
                         adapter.addAll(response.getProfessionals());
                         getRefreshLayout().setRefreshing(false);
 
+                        if (hasMore()) {
+                            adapter.addLoadingFooter();
+                        }
+
                         currentPage = response.getPage();
                         maxPages = response.getTotalPages();
                     }
@@ -114,7 +118,7 @@ public class SearchActivity extends AbsRecyclerActivity {
 
     @Override
     protected boolean hasMore() {
-        return true;
+        return currentPage < maxPages;
     }
 
     @Override

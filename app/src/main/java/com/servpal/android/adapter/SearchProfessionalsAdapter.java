@@ -16,11 +16,11 @@ import com.squareup.picasso.Picasso;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PagingAdapterImpl extends BasePagingAdapter<Professional> {
+public class SearchProfessionalsAdapter extends BasePagingAdapter<Professional> {
 
     private Context context;
 
-    public PagingAdapterImpl(Context context) {
+    public SearchProfessionalsAdapter(Context context) {
         super();
         this.context = context;
     }
