@@ -11,6 +11,7 @@ import com.servpal.android.R;
 
 public abstract class AbsRecyclerActivity extends AppCompatActivity {
 
+    private LinearLayoutManager layoutManager;
     private SwipeRefreshLayout refreshLayout;
     private RecyclerView recycler;
 
@@ -25,7 +26,6 @@ public abstract class AbsRecyclerActivity extends AppCompatActivity {
 
         // set default layout manager
         recycler.setLayoutManager(getLayoutManager());
-        //recycler.setItemAnimator(new DefaultItemAnimator()); // is this necessary?
 
         // attach listeners to abstract methods
         refreshLayout.setOnRefreshListener(this::onRefresh);
@@ -40,8 +40,7 @@ public abstract class AbsRecyclerActivity extends AppCompatActivity {
 
                 if (!isLoading() && hasMore()) {
                     if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount
-                            && firstVisibleItemPosition >= 0
-                            && totalItemCount >= getTotalPageCount()) {
+                            && firstVisibleItemPosition >= 0) {
                         onPagination();
                     }
                 }
@@ -49,20 +48,11 @@ public abstract class AbsRecyclerActivity extends AppCompatActivity {
         });
     }
 
-    private boolean isLoading() {
-        return false;
-    }
-
-    private boolean hasMore() {
-        return true;
-    }
-
-    private int getTotalPageCount() {
-        return 28;
-    }
-
     protected LinearLayoutManager getLayoutManager() {
-        return new LinearLayoutManager(this);
+        if (layoutManager == null) {
+            layoutManager = new LinearLayoutManager(this);
+        }
+        return layoutManager;
     }
 
     protected SwipeRefreshLayout getRefreshLayout() {
@@ -76,6 +66,10 @@ public abstract class AbsRecyclerActivity extends AppCompatActivity {
     protected void setRefreshing(boolean refreshing) {
         refreshLayout.setRefreshing(false);
     }
+
+    protected abstract boolean isLoading();
+
+    protected abstract boolean hasMore();
 
     protected abstract void onRefresh();
 

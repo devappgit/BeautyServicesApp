@@ -107,7 +107,7 @@ public abstract class BasePagingAdapter<T> extends RecyclerView.Adapter implemen
 
     public void addLoadingFooter() {
         isLoadingAdded = true;
-        add(getItem(getItemCount() - 1));   // duplicate last item as a placeholder item
+        add(getItem(list.size() - 1));   // duplicate last item as a placeholder item
     }
 
     public void removeLoadingFooter() {
