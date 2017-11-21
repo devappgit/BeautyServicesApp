@@ -16,7 +16,7 @@ public abstract class AbsRecyclerActivity extends AppCompatActivity {
     private RecyclerView recycler;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler);
 
@@ -25,7 +25,8 @@ public abstract class AbsRecyclerActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.swipe_refresh);
 
         // set default layout manager
-        recycler.setLayoutManager(getLayoutManager());
+        layoutManager = new LinearLayoutManager(this);
+        recycler.setLayoutManager(layoutManager);
 
         // attach listeners to abstract methods
         refreshLayout.setOnRefreshListener(this::onRefresh);
@@ -34,9 +35,9 @@ public abstract class AbsRecyclerActivity extends AppCompatActivity {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                int visibleItemCount = getLayoutManager().getChildCount();
-                int totalItemCount = getLayoutManager().getItemCount();
-                int firstVisibleItemPosition = getLayoutManager().findFirstVisibleItemPosition();
+                int visibleItemCount = layoutManager.getChildCount();
+                int totalItemCount = layoutManager.getItemCount();
+                int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
 
                 if (!isLoading() && hasMore()) {
                     if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount
@@ -48,23 +49,12 @@ public abstract class AbsRecyclerActivity extends AppCompatActivity {
         });
     }
 
-    protected LinearLayoutManager getLayoutManager() {
-        if (layoutManager == null) {
-            layoutManager = new LinearLayoutManager(this);
-        }
-        return layoutManager;
-    }
-
     protected SwipeRefreshLayout getRefreshLayout() {
         return refreshLayout;
     }
 
     protected RecyclerView getRecycler() {
         return recycler;
-    }
-
-    protected void setRefreshing(boolean refreshing) {
-        refreshLayout.setRefreshing(false);
     }
 
     protected abstract boolean isLoading();

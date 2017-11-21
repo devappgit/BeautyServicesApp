@@ -15,21 +15,17 @@ public class Professional {
     private String business;    // represents business title
     private String avatar;
     private String description;
-    //website;
-    //facebook
-    //twitter
     private int locationID;
     private float distance;
     private transient int reviewsCount; // currently server response is Nullable
     private int rating;
 
-    // Address
     private String city;
     private String state;
     private String zip;
 
-    private double latitude;
-    private double longitude;
+    private String latitude;
+    private String longitude;
 
     private String location;
 
