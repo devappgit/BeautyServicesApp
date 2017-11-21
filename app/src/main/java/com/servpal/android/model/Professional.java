@@ -3,6 +3,8 @@ package com.servpal.android.model;
 
 /**
  * Seems to be a Service Provider that has address, business hours, and location Id's
+ *
+ * Usage of boxed primitives (e.g. Integer, Double, Float) indicate that the value can be `null` from server
  */
 public class Professional {
 
@@ -15,17 +17,17 @@ public class Professional {
     private String business;    // represents business title
     private String avatar;
     private String description;
-    private int locationID;
-    private float distance;
-    private transient int reviewsCount; // currently server response is Nullable
-    private int rating;
+    private Integer locationID;
+    private Float distance;
+    private Integer reviewsCount; // currently server response is Nullable
+    private Integer rating;
 
     private String city;
     private String state;
     private String zip;
 
-    private String latitude;
-    private String longitude;
+    private Double latitude;
+    private Double longitude;
 
     private String location;
 
