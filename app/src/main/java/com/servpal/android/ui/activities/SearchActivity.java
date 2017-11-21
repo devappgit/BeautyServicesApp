@@ -2,12 +2,10 @@ package com.servpal.android.ui.activities;
 
 import android.os.Bundle;
 
+import com.servpal.android.adapter.PagingAdapterImpl;
 import com.servpal.android.api.NetworkCallback;
 import com.servpal.android.api.ServpalHttpClient;
-import com.servpal.android.experimental.adapter.SearchPagingAdapter;
 import com.servpal.android.model.SearchResult;
-
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import timber.log.Timber;
@@ -16,14 +14,13 @@ public class SearchActivity extends AbsRecyclerActivity {
 
     private static final int PAGE_START = 1;
 
-    private SearchPagingAdapter adapter;
+    private PagingAdapterImpl adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        adapter = new SearchPagingAdapter(this);
-        adapter.setResults(new ArrayList<>());
+        adapter = new PagingAdapterImpl(this);
         getRecycler().setAdapter(adapter);
 
         loadFirstPage();

@@ -8,14 +8,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.servpal.android.R;
-import com.servpal.android.experimental.listener.PaginationScrollListener;
 
 public abstract class AbsRecyclerActivity extends AppCompatActivity {
 
     private SwipeRefreshLayout refreshLayout;
     private RecyclerView recycler;
-
-    private boolean loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +75,6 @@ public abstract class AbsRecyclerActivity extends AppCompatActivity {
 
     protected void setRefreshing(boolean refreshing) {
         refreshLayout.setRefreshing(false);
-    }
-
-    protected void setLoading(boolean loading) {
-        this.loading = loading;
     }
 
     protected abstract void onRefresh();
