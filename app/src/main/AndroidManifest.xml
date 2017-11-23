@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".ui.activities.SplashActivity"
             android:theme="@style/SplashTheme">
@@ -36,6 +37,11 @@
         <activity
             android:name=".ui.activities.ProviderServicesActivity"
             android:theme="@style/AppThemeFullBleed" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="3c7d9b13b2f77a4e859333d07111416530a0ebc1" />
+
     </application>
 
 </manifest>
