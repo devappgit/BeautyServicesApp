@@ -1,4 +1,4 @@
-package com.servpal.android.ui.activities;
+package com.servpal.android.ui.activities.main;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +13,7 @@ import com.servpal.android.api.NetworkCallback;
 import com.servpal.android.api.ServpalHttpClient;
 import com.servpal.android.model.LoginResult;
 import com.servpal.android.model.Session;
+import com.servpal.android.ui.activities.MainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
