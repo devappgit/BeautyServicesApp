@@ -18,7 +18,7 @@ public abstract class BasePagingAdapter<T> extends RecyclerView.Adapter implemen
 
     private boolean isLoadingAdded;
 
-    protected List<T> list;
+    private List<T> list;
 
     BasePagingAdapter() {
         list = new ArrayList<>();

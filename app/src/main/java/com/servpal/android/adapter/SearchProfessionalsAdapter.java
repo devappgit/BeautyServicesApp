@@ -1,16 +1,19 @@
 package com.servpal.android.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.servpal.android.R;
 import com.servpal.android.api.ServpalHttpClient;
 import com.servpal.android.model.Professional;
+import com.servpal.android.ui.activities.ProviderServicesActivity;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -44,9 +47,15 @@ public class SearchProfessionalsAdapter extends BasePagingAdapter<Professional> 
         item.title.setText(pro.getBusiness());
         item.subTitle.setText(pro.getProfession());
         item.caption.setText(pro.getLocation());
+
+        item.frame.setOnClickListener(view -> {
+            context.startActivity(ProviderServicesActivity.newIntent(context));
+        });
     }
 
     static class ItemVH extends RecyclerView.ViewHolder {
+        @BindView(R.id.frame)
+        FrameLayout frame;
         @BindView(R.id.title)
         TextView title;
         @BindView(R.id.sub_title)

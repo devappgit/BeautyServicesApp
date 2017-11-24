@@ -1,5 +1,7 @@
 package com.servpal.android.ui.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -26,6 +28,10 @@ public class ProviderServicesActivity extends AppCompatActivity {
 
     // some kind of local data
     // ProviderServicesList that has Profile and List<Services>?
+
+    public static Intent newIntent(Context context) {
+        return new Intent(context, ProviderServicesActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
