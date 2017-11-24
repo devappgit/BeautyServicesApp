@@ -1,35 +1,39 @@
 package com.servpal.android.model;
 
 
+import org.parceler.Parcel;
+
 /**
  * Seems to be a Service Provider that has address, business hours, and location Id's
  *
  * Usage of boxed primitives (e.g. Integer, Double, Float) indicate that the value can be `null` from server
  */
+@SuppressWarnings("WeakerAccess")
+@Parcel
 public class Professional {
 
-    private int id;
-    private int professionId;
-    private int isActive;
-    private String firstName;
-    private String lastName;
-    private String profession;
-    private String business;    // represents business title
-    private String avatar;
-    private String description;
-    private Integer locationID;
-    private Float distance;
-    private Integer reviewsCount; // currently server response is Nullable
-    private Integer rating;
+     int id;
+     int professionId;
+     int isActive;
+     String firstName;
+     String lastName;
+     String profession;
+     String business;    // represents business title
+     String avatar;
+     String description;
+     Integer locationID;
+     Float distance;
+     Integer reviewsCount; // currently server response is Nullable
+     Integer rating;
 
-    private String city;
-    private String state;
-    private String zip;
+     String city;
+     String state;
+     String zip;
 
-    private Double latitude;
-    private Double longitude;
+     Double latitude;
+     Double longitude;
 
-    private String location;
+     String location;
 
     public int getId() {
         return id;

@@ -49,7 +49,7 @@ public class SearchProfessionalsAdapter extends BasePagingAdapter<Professional> 
         item.caption.setText(pro.getLocation());
 
         item.frame.setOnClickListener(view -> {
-            context.startActivity(ProviderServicesActivity.newIntent(context));
+            context.startActivity(ProviderServicesActivity.newIntent(context, pro));
         });
     }
 
