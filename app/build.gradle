@@ -122,4 +122,7 @@ dependencies {
 
     // date/time
     implementation 'com.jakewharton.threetenabp:threetenabp:1.0.5'
+
+    // view libs
+    compile 'de.hdodenhof:circleimageview:2.2.0'
 }

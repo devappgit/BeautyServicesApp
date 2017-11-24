@@ -3,7 +3,6 @@ package com.servpal.android.ui.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcel;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,7 +18,6 @@ import org.parceler.Parcels;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
 public class ProviderServicesActivity extends AppCompatActivity {
 
@@ -52,8 +50,6 @@ public class ProviderServicesActivity extends AppCompatActivity {
 
         if (getIntent().hasExtra(PRO_KEY)) {
             professional = Parcels.unwrap(getIntent().getParcelableExtra(PRO_KEY));
-
-            Timber.d(professional.getBusiness());
         }
         // network call for provider services
         // populate image

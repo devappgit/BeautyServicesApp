@@ -1,7 +1,6 @@
 package com.servpal.android.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,15 +41,14 @@ public class SearchProfessionalsAdapter extends BasePagingAdapter<Professional> 
 
         Picasso.with(context)
                 .load(ServpalHttpClient.baseUrl() + pro.getAvatar())
+                .noFade()
                 .into(item.image);
 
         item.title.setText(pro.getBusiness());
         item.subTitle.setText(pro.getProfession());
         item.caption.setText(pro.getLocation());
 
-        item.frame.setOnClickListener(view -> {
-            context.startActivity(ProviderServicesActivity.newIntent(context, pro));
-        });
+        item.frame.setOnClickListener(view -> context.startActivity(ProviderServicesActivity.newIntent(context, pro)));
     }
 
     static class ItemVH extends RecyclerView.ViewHolder {
