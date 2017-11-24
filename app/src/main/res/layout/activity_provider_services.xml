@@ -17,9 +17,7 @@
             <ImageView
                 android:id="@+id/backdrop"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleX="3"
-                android:scaleY="2" />
+                android:layout_height="wrap_content" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
