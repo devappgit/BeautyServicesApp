@@ -27,6 +27,7 @@ public class Professional {
     Integer rating;
 
     String phone;
+    String mobile;
     String city;
     String state;
     String zip;
@@ -78,6 +79,10 @@ public class Professional {
 
     public String getPhone() {
         return phone;
+    }
+
+    public String getMobile() {
+        return mobile;
     }
 
     public String getCity() {

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +11,7 @@ import android.widget.Toast;
 import com.servpal.android.R;
 import com.servpal.android.api.ServpalHttpClient;
 import com.servpal.android.model.Professional;
+import com.servpal.android.utils.TextUtils;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -25,8 +25,8 @@ public class ProviderServicesActivity extends AppCompatActivity {
 
     private static final String PRO_KEY = "PROFESSIONAL_PARCELABLE";
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+//    @BindView(R.id.toolbar)
+//    Toolbar toolbar;
     @BindView(R.id.backdrop)
     ImageView backdrop;
     @BindView(R.id.provider_avatar)
@@ -76,8 +76,11 @@ public class ProviderServicesActivity extends AppCompatActivity {
             String fullName = pro.getFirstName() + " " +  pro.getLastName();
             providerNameText.setText(fullName);
 
-            String mockPhone = "(425) 891-3141";
-            providerPhoneText.setText(mockPhone);
+            if (TextUtils.isEmpty(pro.getPhone())) {
+                providerPhoneText.setText(pro.getMobile());
+            } else {
+                providerPhoneText.setText(pro.getPhone());
+            }
 
             providerAboutText.setText(pro.getDescription());
 
