@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.servpal.android.R;
 import com.servpal.android.model.Professional;
@@ -20,6 +21,14 @@ public class ProviderServicesActivity extends AppCompatActivity {
 
     @BindView(R.id.backdrop)
     ImageView backdrop;
+    @BindView(R.id.provider_name)
+    TextView providerNameText;
+    @BindView(R.id.provider_phone)
+    TextView providerPhoneText;
+    @BindView(R.id.provider_about_text)
+    TextView providerAboutText;
+    @BindView(R.id.provider_address_text)
+    TextView providerAddressText;
 
     // some kind of local data
     // ProviderServicesList that has Profile and List<Services>?
@@ -40,6 +49,17 @@ public class ProviderServicesActivity extends AppCompatActivity {
 
         if (getIntent().hasExtra(PRO_KEY)) {
             professional = Parcels.unwrap(getIntent().getParcelableExtra(PRO_KEY));
+
+            // set texts
+            String fullName = professional.getFirstName() + " " +  professional.getLastName();
+            providerNameText.setText(fullName);
+
+            String mockPhone = "(425) 891-3141";
+            providerPhoneText.setText(mockPhone);
+
+            providerAboutText.setText(professional.getDescription());
+
+            providerAddressText.setText(professional.getLocation());
         }
         // network call for provider services
         // populate image

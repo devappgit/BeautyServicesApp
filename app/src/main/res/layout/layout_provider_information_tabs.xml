@@ -7,6 +7,7 @@
     android:paddingTop="16dp">
 
     <TextView
+        android:id="@+id/provider_services_tab"
         style="@style/TextAppearance.AppCompat.Subhead"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -20,6 +21,7 @@
         android:background="@android:color/darker_gray" />
 
     <TextView
+        android:id="@+id/provider_hours_tab"
         style="@style/TextAppearance.AppCompat.Subhead"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -33,6 +35,7 @@
         android:background="@android:color/darker_gray" />
 
     <TextView
+        android:id="@+id/provider_reviews_tab"
         style="@style/TextAppearance.AppCompat.Subhead"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

@@ -3,11 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
     android:layout_marginBottom="8dp"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/provider_name"
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,6 +16,7 @@
         tools:text="Kim Hockman" />
 
     <TextView
+        android:id="@+id/provider_phone"
         style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

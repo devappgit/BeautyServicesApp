@@ -6,12 +6,14 @@
     android:orientation="horizontal">
 
     <Button
+        android:id="@+id/provider_hire_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="6"
         android:text="@string/hire_me" />
 
     <Button
+        android:id="@+id/provider_review_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="5"

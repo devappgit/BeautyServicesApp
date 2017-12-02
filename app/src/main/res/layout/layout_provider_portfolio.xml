@@ -20,7 +20,15 @@
         android:layout_height="1dp"
         android:background="@android:color/darker_gray" />
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_gravity="center_horizontal"/>
+
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/provider_portfolio_recycler"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
