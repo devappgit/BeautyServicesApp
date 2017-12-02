@@ -8,7 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.servpal.android.R;
+import com.servpal.android.api.ServpalHttpClient;
 import com.servpal.android.model.Professional;
+import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
@@ -21,6 +23,8 @@ public class ProviderServicesActivity extends AppCompatActivity {
 
     @BindView(R.id.backdrop)
     ImageView backdrop;
+    @BindView(R.id.provider_avatar)
+    ImageView providerAvatar;
     @BindView(R.id.provider_name)
     TextView providerNameText;
     @BindView(R.id.provider_phone)
@@ -33,7 +37,7 @@ public class ProviderServicesActivity extends AppCompatActivity {
     // some kind of local data
     // ProviderServicesList that has Profile and List<Services>?
 
-    private Professional professional;
+    private Professional pro;
 
     public static Intent newIntent(Context context, Professional pro) {
         Intent intent = new Intent(context, ProviderServicesActivity.class);
@@ -48,18 +52,22 @@ public class ProviderServicesActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         if (getIntent().hasExtra(PRO_KEY)) {
-            professional = Parcels.unwrap(getIntent().getParcelableExtra(PRO_KEY));
+            pro = Parcels.unwrap(getIntent().getParcelableExtra(PRO_KEY));
+
+            Picasso.with(this)
+                    .load(ServpalHttpClient.baseUrl() + pro.getAvatar())
+                    .into(providerAvatar);
 
             // set texts
-            String fullName = professional.getFirstName() + " " +  professional.getLastName();
+            String fullName = pro.getFirstName() + " " +  pro.getLastName();
             providerNameText.setText(fullName);
 
             String mockPhone = "(425) 891-3141";
             providerPhoneText.setText(mockPhone);
 
-            providerAboutText.setText(professional.getDescription());
+            providerAboutText.setText(pro.getDescription());
 
-            providerAddressText.setText(professional.getLocation());
+            providerAddressText.setText(pro.getLocation());
         }
         // network call for provider services
         // populate image

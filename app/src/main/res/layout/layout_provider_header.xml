@@ -7,6 +7,13 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
+    <android.support.v4.widget.CircleImageView
+        android:id="@+id/provider_avatar"
+        android:layout_margin="16dp"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        tools:src="@drawable/calvin"/>
+
     <TextView
         android:id="@+id/provider_name"
         style="@style/TextAppearance.AppCompat.Large"
