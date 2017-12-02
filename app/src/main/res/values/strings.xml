@@ -19,4 +19,11 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
+
+    <!--Strings related to Provider details-->
+    <string name="hire_me">Hire Me</string>
+    <string name="write_review">Write a Review</string>
+    <string name="services">Services</string>
+    <string name="business_hours">Business Hours</string>
+    <string name="reviews">Reviews</string>
 </resources>

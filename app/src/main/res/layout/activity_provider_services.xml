@@ -23,6 +23,17 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+        <include layout="@layout/layout_provider_header" />
+
+        <include layout="@layout/layout_provider_button_bar" />
+
+        <include layout="@layout/layout_provider_information_tabs" />
+
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
