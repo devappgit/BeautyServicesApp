@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.servpal.android.R;
 import com.servpal.android.api.ServpalHttpClient;
@@ -16,6 +17,7 @@ import org.parceler.Parcels;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ProviderServicesActivity extends AppCompatActivity {
 
@@ -51,6 +53,10 @@ public class ProviderServicesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_provider_services);
         ButterKnife.bind(this);
 
+        Picasso.with(this)
+                .load(ServpalHttpClient.baseUrl() + "images/logo-white.png")
+                .into(backdrop);
+
         if (getIntent().hasExtra(PRO_KEY)) {
             pro = Parcels.unwrap(getIntent().getParcelableExtra(PRO_KEY));
 
@@ -74,5 +80,15 @@ public class ProviderServicesActivity extends AppCompatActivity {
         // populate title
         // generate Tabs
         // create fragments with ViewPager
+    }
+
+    @OnClick(R.id.provider_hire_button)
+    void onHireMeClicked() {
+        Toast.makeText(this, "Hire Me clicked", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.provider_review_button)
+    void onWriteReviewClicked() {
+        Toast.makeText(this, "Write a Review", Toast.LENGTH_SHORT).show();
     }
 }
