@@ -89,9 +89,6 @@ dependencies {
         transitive = true
     }
 
-    // For SharedPreferences inspection.  Go to chrome://inspect and inspect device
-    //implementation 'com.facebook.stetho:stetho:1.5.0'
-
     // support libs
     implementation 'com.android.support:support-v4:27.0.2'
     implementation 'com.android.support:appcompat-v7:27.0.2'
@@ -111,6 +108,10 @@ dependencies {
     implementation('com.github.ihsanbal:LoggingInterceptor:2.0.2') {
         exclude group: 'org.json', module: 'json'
     }
+
+    // RxJava & RxBinding for Android
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
+    implementation 'com.jakewharton.rxbinding2:rxbinding-design:2.0.0'
 
     // utils
     implementation 'com.jakewharton.timber:timber:4.6.0'

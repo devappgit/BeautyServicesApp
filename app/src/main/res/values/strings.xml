@@ -20,6 +20,9 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
 
+    <!--Strings related to Search-->
+    <string name="search_hint">Search providers</string>
+
     <!--Strings related to Provider details-->
     <string name="hire_me">Hire Me</string>
     <string name="write_review">Write a Review</string>
