@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,11 +19,14 @@ import org.parceler.Parcels;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import timber.log.Timber;
 
 public class ProviderServicesActivity extends AppCompatActivity {
 
     private static final String PRO_KEY = "PROFESSIONAL_PARCELABLE";
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.backdrop)
     ImageView backdrop;
     @BindView(R.id.provider_avatar)
@@ -53,18 +57,22 @@ public class ProviderServicesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_provider_services);
         ButterKnife.bind(this);
 
+        // enable back button
+
+        // load default backdrop
         Picasso.with(this)
                 .load(ServpalHttpClient.baseUrl() + "images/logo-white.png")
                 .into(backdrop);
 
+        // find parcelled Profession object
         if (getIntent().hasExtra(PRO_KEY)) {
             pro = Parcels.unwrap(getIntent().getParcelableExtra(PRO_KEY));
 
+            // update UI
             Picasso.with(this)
                     .load(ServpalHttpClient.baseUrl() + pro.getAvatar())
                     .into(providerAvatar);
 
-            // set texts
             String fullName = pro.getFirstName() + " " +  pro.getLastName();
             providerNameText.setText(fullName);
 
@@ -90,5 +98,11 @@ public class ProviderServicesActivity extends AppCompatActivity {
     @OnClick(R.id.provider_review_button)
     void onWriteReviewClicked() {
         Toast.makeText(this, "Write a Review", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Timber.d("back pressed");
     }
 }
