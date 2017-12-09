@@ -2,6 +2,7 @@ package com.servpal.android.ui.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.GridView;
 
@@ -16,6 +17,8 @@ public class GridActivity extends AppCompatActivity {
 
     @BindView(R.id.grid_view)
     GridView gridView;
+    @BindView(R.id.bottom_navigation)
+    BottomNavigationView bottomNav;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
