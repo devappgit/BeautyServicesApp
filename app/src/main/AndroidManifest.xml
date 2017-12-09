@@ -39,6 +39,9 @@
         <!--START Search, Content-->
         <activity android:name=".ui.activities.MainActivity" />
         <activity
+            android:name=".ui.BottomBarActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
             android:name=".ui.activities.SearchActivity"
             android:theme="@style/AppThemeNoActionBar">
             <intent-filter>
@@ -51,7 +54,6 @@
         <activity
             android:name=".ui.activities.ProviderServicesActivity"
             android:theme="@style/AppThemeFullBleed" />
-        <activity android:name=".ui.BottomBarActivity" />
         <!--END Search, Content-->
 
         <meta-data
