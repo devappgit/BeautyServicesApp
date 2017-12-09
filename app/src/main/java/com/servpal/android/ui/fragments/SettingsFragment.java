@@ -1,5 +1,6 @@
 package com.servpal.android.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.servpal.android.R;
+import com.servpal.android.model.Session;
+import com.servpal.android.ui.activities.launch.LaunchActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -40,6 +43,14 @@ public class SettingsFragment extends Fragment {
     @OnClick(R.id.settings_contact)
     void onContactClicked() {
         Timber.d("Clicked on Contact");
+    }
+
+    @OnClick(R.id.settings_logout)
+    void onLogoutClicked() {
+        Session.clear();
+        Intent intent = new Intent(getContext(), LaunchActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     @Override

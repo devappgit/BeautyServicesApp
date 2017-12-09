@@ -63,4 +63,5 @@
 
     <string name="settings_about">About Servpal</string>
     <string name="settings_contact">Contact Us</string>
+    <string name="settings_logout">Log out</string>
 </resources>

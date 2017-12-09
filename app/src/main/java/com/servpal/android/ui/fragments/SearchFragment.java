@@ -49,7 +49,7 @@ public class SearchFragment extends Fragment {
     void onGridItemClicked(int position) {
         if (getContext() != null) { // get array of gridItems (same as used in GridAdapter), determine category of search with array
             String[] gridItems = getContext().getResources().getStringArray(R.array.grid_categories);
-            getContext().startActivity(SearchActivity.newIntentWithSearch(getContext(), gridItems[position]));
+            startActivity(SearchActivity.newIntentWithSearch(getContext(), gridItems[position]));
         }
     }
 

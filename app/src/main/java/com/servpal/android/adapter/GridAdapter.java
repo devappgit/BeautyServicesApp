@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.servpal.android.R;
 import com.servpal.android.api.ServpalHttpClient;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -60,12 +61,12 @@ public class GridAdapter extends BaseAdapter {
 
         String text = items.get(position);
 
-        holder.text.setText(text);
-
         String imagePath = text.toLowerCase().replace(" ", "-") + ".png";
         Picasso.with(context)
                 .load(ServpalHttpClient.baseUrl() + "images/services/" + imagePath)
                 .into(holder.image);
+
+        holder.text.setText(text);
 
         return view;
     }

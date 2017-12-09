@@ -30,4 +30,17 @@
         android:layout_height="1dp"
         android:background="@android:color/darker_gray" />
 
+    <TextView
+        android:id="@+id/settings_logout"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="@string/settings_logout" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
 </LinearLayout>
