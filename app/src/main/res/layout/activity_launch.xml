@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.servpal.android.ui.activities.main.LaunchActivity">
+    tools:context="com.servpal.android.ui.activities.launch.LaunchActivity">
 
     <ImageView
         android:layout_marginTop="64dp"

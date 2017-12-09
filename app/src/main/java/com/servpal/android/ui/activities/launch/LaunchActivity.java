@@ -1,4 +1,4 @@
-package com.servpal.android.ui.activities.main;
+package com.servpal.android.ui.activities.launch;
 
 import android.content.Intent;
 import android.os.Bundle;

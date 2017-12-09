@@ -1,4 +1,4 @@
-package com.servpal.android.ui.activities.main;
+package com.servpal.android.ui.activities.launch;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

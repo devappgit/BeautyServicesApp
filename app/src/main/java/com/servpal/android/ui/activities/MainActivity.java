@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.servpal.android.R;
 import com.servpal.android.model.Session;
-import com.servpal.android.ui.activities.main.LaunchActivity;
+import com.servpal.android.ui.activities.launch.LaunchActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
