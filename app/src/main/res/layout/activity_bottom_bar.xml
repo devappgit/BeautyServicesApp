@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <com.servpal.android.customview.ToggleableViewPager
         android:id="@+id/view_pager"
+        android:layout_marginBottom="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
