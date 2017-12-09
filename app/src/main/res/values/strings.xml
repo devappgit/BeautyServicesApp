@@ -24,6 +24,18 @@
     <string name="search_hint">Search providers</string>
 
     <!--Default search categories-->
+    <string-array name="grid_categories">
+        <item>Hair Stylists</item>
+        <item>Photographers</item>
+        <item>Makeup Artists</item>
+        <item>Personal Trainers</item>
+        <item>Massage Therapists</item>
+        <item>Tattoo Artists</item>
+        <item>Manicurists</item>
+        <item>Barbers</item>
+        <item>Eyelash Technicians</item>
+    </string-array>
+
     <string name="category_hair_stylist">Hair Stylists</string>
     <string name="category_photographers">Photographers</string>
     <string name="category_makeup_artists">Makeup Artists</string>
