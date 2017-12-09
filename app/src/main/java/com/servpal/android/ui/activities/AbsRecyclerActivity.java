@@ -20,11 +20,12 @@ public abstract class AbsRecyclerActivity extends AppCompatActivity {
     private LinearLayoutManager layoutManager;
     private SwipeRefreshLayout refreshLayout;
     private RecyclerView recycler;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler);
+        setContentView(R.layout.abs_activity_recycler);
 
         // bind views
         recycler = findViewById(R.id.recycler);
@@ -54,7 +55,7 @@ public abstract class AbsRecyclerActivity extends AppCompatActivity {
             }
         });
 
-        SearchView searchView = findViewById(R.id.search_view);
+        searchView = findViewById(R.id.search_view);
         RxSearchView.queryTextChanges(searchView)
                 .debounce(350, TimeUnit.MILLISECONDS)
                 .map(charSequence -> charSequence.toString().trim())
@@ -70,6 +71,10 @@ public abstract class AbsRecyclerActivity extends AppCompatActivity {
 
     protected RecyclerView getRecycler() {
         return recycler;
+    }
+
+    protected SearchView getSearchView() {
+        return searchView;
     }
 
     protected abstract boolean isLoading();

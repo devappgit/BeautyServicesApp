@@ -15,9 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--START Launch, Login, Signup-->
+        <!--START Splash, Launch, Login, Signup-->
         <activity
-            android:name=".ui.activities.main.SplashActivity"
+            android:name=".ui.activities.launch.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,18 +26,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activities.main.LaunchActivity"
+            android:name=".ui.activities.launch.LaunchActivity"
             android:theme="@style/AppThemeNoActionBar" />
         <activity
-            android:name=".ui.activities.main.LoginActivity"
+            android:name=".ui.activities.launch.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
-            android:name=".ui.activities.main.SignupActivity"
+            android:name=".ui.activities.launch.SignupActivity"
             android:label="@string/title_activity_signup" />
         <!--END Launch, Login, Signup-->
 
-        <!--START Search, Content-->
-        <activity android:name=".ui.activities.MainActivity" />
+        <!--START Search, Content, etc-->
+        <activity
+            android:name=".ui.activities.MainActivity"
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.activities.SearchActivity"
             android:theme="@style/AppThemeNoActionBar">

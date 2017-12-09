@@ -13,7 +13,7 @@
     <string name="prompt_last_name">Last Name</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_up">Create Account</string>
+    <string name="action_sign_up">Create an Account</string>
     <string name="action_log_in">Log In</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
@@ -22,6 +22,34 @@
 
     <!--Strings related to Search-->
     <string name="search_hint">Search providers</string>
+
+    <!--Default search categories-->
+    <string-array name="grid_categories">
+        <item>Hair Stylists</item>
+        <item>Photographers</item>
+        <item>Makeup Artists</item>
+        <item>Personal Trainers</item>
+        <item>Massage Therapists</item>
+        <item>Tattoo Artists</item>
+        <item>Manicurists</item>
+        <item>Barbers</item>
+        <item>Eyelash Technicians</item>
+    </string-array>
+
+    <string name="category_hair_stylist">Hair Stylists</string>
+    <string name="category_photographers">Photographers</string>
+    <string name="category_makeup_artists">Makeup Artists</string>
+    <string name="category_personal_trainers">Personal Trainers</string>
+    <string name="category_massage_therapists">Massage Therapists</string>
+    <string name="category_tattoo_artists">Tattoo Artists</string>
+    <string name="category_manicurists">Manicurists</string>
+    <string name="category_barbers">Barbers</string>
+    <string name="category_eyelash_technicians">Eyelash Technicians</string>
+
+    <string name="bb_search">Search</string>
+    <string name="bb_dashboard">Dashboard</string>
+    <string name="bb_profile">Profile</string>
+    <string name="bb_settings">Settings</string>
 
     <!--Strings related to Provider details-->
     <string name="hire_me">Hire Me</string>
@@ -32,4 +60,8 @@
     <string name="portfolio">Portfolio</string>
     <string name="about">About</string>
     <string name="address">Address</string>
+
+    <string name="settings_about">About Servpal</string>
+    <string name="settings_contact">Contact Us</string>
+    <string name="settings_logout">Log out</string>
 </resources>
