@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.servpal.android.R;
 import com.servpal.android.api.ServpalHttpClient;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
