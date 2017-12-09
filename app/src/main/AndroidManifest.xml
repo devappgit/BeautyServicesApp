@@ -52,6 +52,7 @@
             android:name=".ui.activities.ProviderServicesActivity"
             android:theme="@style/AppThemeFullBleed" />
         <activity android:name=".ui.activities.GridActivity" />
+        <activity android:name=".ui.BottomBarActivity" />
         <!--END Search, Content-->
 
         <meta-data

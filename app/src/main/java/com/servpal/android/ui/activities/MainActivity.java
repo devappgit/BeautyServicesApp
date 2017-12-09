@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.servpal.android.R;
 import com.servpal.android.model.Session;
+import com.servpal.android.ui.BottomBarActivity;
 import com.servpal.android.ui.activities.launch.LaunchActivity;
 
 import butterknife.ButterKnife;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.grid_button)
     void onGridClicked() {
-        startActivity(new Intent(this, GridActivity.class));
+        startActivity(new Intent(this, BottomBarActivity.class));
     }
 
     @OnClick(R.id.provider_button)
