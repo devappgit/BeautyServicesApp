@@ -23,8 +23,9 @@ public class Session {
     }
 
     public static void initialize(@NonNull Context context) {
-        prefs = context.getSharedPreferences(getPrefsForConfig(), Context.MODE_PRIVATE);
-
+        if (prefs == null) {
+            prefs = context.getSharedPreferences(getPrefsForConfig(), Context.MODE_PRIVATE);
+        }
         user = User.fromJson(prefs.getString(USER, ""));
     }
 
@@ -34,10 +35,7 @@ public class Session {
 
     public static void persist(User networkUser) {
         user = networkUser;
-
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(USER, User.toJson(user));
-        editor.apply();
+        prefs.edit().putString(USER, User.toJson(user)).apply();
     }
 
     public static boolean clear() {

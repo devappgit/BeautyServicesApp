@@ -10,6 +10,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
@@ -25,6 +26,6 @@ public interface ApiService {
     @GET("api/user/{user_id}")
     Call<UserBody> getUser(@Path("user_id") int userId);
 
-    @GET("professionals/find")
-    Call<SearchResult> findProfessionals();
+    @GET("professionals/find/{page}")
+    Call<SearchResult> findProfessionals(@Path("page") int page, @Query("search") String query);
 }

@@ -1,4 +1,4 @@
-package com.servpal.android.ui.activities;
+package com.servpal.android.ui.activities.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import com.servpal.android.api.NetworkCallback;
 import com.servpal.android.api.ServpalHttpClient;
 import com.servpal.android.model.Session;
 import com.servpal.android.model.UserBody;
+import com.servpal.android.ui.activities.MainActivity;
 
 import timber.log.Timber;
 

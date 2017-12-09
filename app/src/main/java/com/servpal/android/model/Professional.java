@@ -1,35 +1,41 @@
 package com.servpal.android.model;
 
 
+import org.parceler.Parcel;
+
 /**
  * Seems to be a Service Provider that has address, business hours, and location Id's
+ * <p>
+ * Usage of boxed primitives (e.g. Integer, Double, Float) indicate that the value can be `null` from server
  */
+@SuppressWarnings("WeakerAccess")
+@Parcel
 public class Professional {
 
-    private int id;
-    private int professionId;
-    private int isActive;
-    private String firstName;
-    private String lastName;
-    private String profession;
-    private String business;    // what's the difference between this and profession?
-    private String avatar;
-    private String description;
-    //website;
-    //facebook
-    //twitter
-    private int locationID;
-    private float distance;
-    private transient int reviewsCount; // currently server response is Nullable
-    private int rating;
+    int id;
+    int professionId;
+    int isActive;
+    String firstName;
+    String lastName;
+    String profession;
+    String business;    // represents business title
+    String avatar;
+    String description;
+    Integer locationID;
+    Float distance;
+    Integer reviewsCount; // currently server response is Nullable
+    Integer rating;
 
-    // Address
-    private String city;
-    private String state;
-    private String zip;
+    String phone;
+    String mobile;
+    String city;
+    String state;
+    String zip;
 
-    private double latitude;
-    private double longitude;
+    Double latitude;
+    Double longitude;
+
+    String location;
 
     public int getId() {
         return id;
@@ -45,6 +51,10 @@ public class Professional {
 
     public String getProfession() {
         return profession;
+    }
+
+    public String getBusiness() {
+        return business;
     }
 
     public String getAvatar() {
@@ -67,6 +77,14 @@ public class Professional {
         return rating;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
     public String getCity() {
         return city;
     }
@@ -77,5 +95,9 @@ public class Professional {
 
     public String getZip() {
         return zip;
+    }
+
+    public String getLocation() {
+        return location;
     }
 }

@@ -16,7 +16,7 @@ import timber.log.Timber;
 public abstract class NetworkCallback<T> implements Callback<T> {
 
     protected void onSuccess(Response<T> response) {
-
+        // direct access to Response object to get headers and other information
     }
 
     protected abstract void onSuccess(T response);
@@ -24,22 +24,18 @@ public abstract class NetworkCallback<T> implements Callback<T> {
     protected abstract void onError(Error error);
 
     public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
-        if(response == null) {
-            Timber.w("Null response");
-            this.handleError(new Error(new IllegalStateException("No body returned from the server"), null));
-        } else if(!response.isSuccessful()) {
-            //this.handleError(new Error(new Exception("Status code outside the 200-300 range"), response));
-            this.handleHttpError(response);
-        } else if(response.body() == null) {    // could be removed?
+        if (response.body() == null) {
             Timber.w("Empty Body");
             this.handleError(new Error(new IllegalStateException("No body returned from the server"), response));
+        } else if(!response.isSuccessful()) {
+            this.handleHttpError(response);
         } else {
             this.onSuccess(response);
             this.onSuccess(response.body());
         }
     }
 
-    public void onFailure(Call<T> call, Throwable t) {
+    public void onFailure(@NonNull Call<T> call, @NonNull Throwable t) {
         this.handleError(new Error(t, null));
     }
 
@@ -48,7 +44,6 @@ public abstract class NetworkCallback<T> implements Callback<T> {
     }
 
     private void handleHttpError(Response response) {
-        // TODO: One problem, statusCode is lost through moshi parsing
         JsonAdapter<Error> adapter = new Moshi.Builder().build().adapter(Error.class);
         try {
             this.handleError(adapter.fromJson(response.errorBody().string()));
@@ -63,12 +58,9 @@ public abstract class NetworkCallback<T> implements Callback<T> {
         String error;
         String state;
 
-        int statusCode;
-
         Error(Throwable throwable, @Nullable Response response) {
             this.throwable = throwable;
             this.error = parseErrorMessage(throwable, response);
-            this.statusCode = parseErrorCode(response);
         }
 
         public Throwable getThrowable() {
@@ -83,10 +75,6 @@ public abstract class NetworkCallback<T> implements Callback<T> {
             return this.state;
         }
 
-        public int getCode() {
-            return this.statusCode;
-        }
-
         private String parseErrorMessage(Throwable throwable, @Nullable Response response) {
             if (response != null && response.errorBody() != null) {
                 try {
@@ -96,13 +84,6 @@ public abstract class NetworkCallback<T> implements Callback<T> {
                 }
             }
             return throwable.getMessage();
-        }
-
-        private int parseErrorCode(Response response) {
-            if (response != null) {
-                return response.code();
-            }
-            return -1;
         }
     }
 }

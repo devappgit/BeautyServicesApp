@@ -1,12 +1,10 @@
-package com.servpal.android.ui.activities;
+package com.servpal.android.ui.activities.main;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.servpal.android.R;
-import com.servpal.android.ui.activities.LoginActivity;
-import com.servpal.android.ui.activities.SignupActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
