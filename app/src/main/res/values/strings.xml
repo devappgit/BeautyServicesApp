@@ -23,6 +23,17 @@
     <!--Strings related to Search-->
     <string name="search_hint">Search providers</string>
 
+    <!--Default search categories-->
+    <string name="category_hair_stylist">Hair Stylists</string>
+    <string name="category_photographers">Photographers</string>
+    <string name="category_makeup_artists">Makeup Artists</string>
+    <string name="category_personal_trainers">Personal Trainers</string>
+    <string name="category_massage_therapists">Massage Therapists</string>
+    <string name="category_tattoo_artists">Tattoo Artists</string>
+    <string name="category_manicurists">Manicurists</string>
+    <string name="category_barbers">Barbers</string>
+    <string name="category_eyelash_technicians">Eyelash Technicians</string>
+
     <!--Strings related to Provider details-->
     <string name="hire_me">Hire Me</string>
     <string name="write_review">Write a Review</string>
