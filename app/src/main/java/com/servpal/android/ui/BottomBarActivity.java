@@ -1,5 +1,7 @@
 package com.servpal.android.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +18,7 @@ import com.servpal.android.ui.fragments.DashboardFragment;
 import com.servpal.android.ui.fragments.ProfileFragment;
 import com.servpal.android.ui.fragments.SearchFragment;
 import com.servpal.android.ui.fragments.SettingsFragment;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,11 +30,19 @@ public class BottomBarActivity extends AppCompatActivity {
     @BindView(R.id.bottom_navigation)
     BottomNavigationView bottomBar;
 
+    public static Intent newIntent(Context context) {
+        Intent intent = new Intent(context, BottomBarActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        return intent;
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_bar);
         ButterKnife.bind(this);
+
+        Picasso.with(this).setIndicatorsEnabled(true);
 
         MainPagingAdapter adapter = new MainPagingAdapter(getSupportFragmentManager());
         pager.setAdapter(adapter);
