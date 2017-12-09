@@ -10,6 +10,6 @@
         android:horizontalSpacing="8dp"
         android:stretchMode="columnWidth"
         android:numColumns="2"
-        android:verticalSpacing="10dp" />
+        android:verticalSpacing="8dp" />
 
 </android.support.constraint.ConstraintLayout>
