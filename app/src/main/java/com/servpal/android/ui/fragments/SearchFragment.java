@@ -42,7 +42,7 @@ public class SearchFragment extends Fragment {
 
         gridView.setAdapter(new GridAdapter(getContext()));
 
-        // TODO: Set up listeners on grid and on toolbar searchview -> SearchActivity.newIntent(context, @Nullable String initialSearch)
+        // TODO: Set up listener on toolbar/searchview -> SearchActivity.newIntent(context)
     }
 
     @OnItemClick(R.id.grid_view)
