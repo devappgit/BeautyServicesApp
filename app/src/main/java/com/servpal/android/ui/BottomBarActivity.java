@@ -11,8 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.servpal.android.R;
-import com.servpal.android.ToggleableViewPager;
-import com.servpal.android.adapter.PagingAdapter;
+import com.servpal.android.customview.ToggleableViewPager;
 import com.servpal.android.ui.fragments.DashboardFragment;
 import com.servpal.android.ui.fragments.ProfileFragment;
 import com.servpal.android.ui.fragments.SearchFragment;

@@ -3,9 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:text="SEARCH FRAGMENT!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <GridView
+        android:id="@+id/grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:horizontalSpacing="8dp"
+        android:numColumns="2"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="8dp" />
 
 </android.support.constraint.ConstraintLayout>

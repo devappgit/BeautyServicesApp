@@ -13,12 +13,13 @@ import timber.log.Timber;
 
 public class SearchActivity extends AbsRecyclerActivity {
 
+    public static final String INITIAL_QUERY = "INITIAL_QUERY";
+
     private static final int PAGE_START = 1;
     private int currentPage = PAGE_START;
     private int maxPages = PAGE_START;
 
     private boolean loadingMore = false;
-
     private String currentQuery;
 
     private SearchProfessionalsAdapter adapter;
@@ -30,6 +31,10 @@ public class SearchActivity extends AbsRecyclerActivity {
         adapter = new SearchProfessionalsAdapter(this);
         getRecycler().setAdapter(adapter);
 
+        if (getIntent().hasExtra(INITIAL_QUERY)) {
+            currentQuery = getIntent().getStringExtra(INITIAL_QUERY);
+        }   // else creates as null
+
         loadFirstPage();
     }
 
@@ -39,7 +44,7 @@ public class SearchActivity extends AbsRecyclerActivity {
 
     private void loadFirstPage() {
         getRefreshLayout().setRefreshing(true);
-        callProfessionalsSearch(PAGE_START, null)
+        callProfessionalsSearch(PAGE_START, currentQuery)
                 .enqueue(new NetworkCallback<SearchResult>() {
                     @Override
                     protected void onSuccess(SearchResult response) {
