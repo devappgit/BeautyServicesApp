@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +11,19 @@ import android.widget.GridView;
 
 import com.servpal.android.R;
 import com.servpal.android.adapter.GridAdapter;
+import com.servpal.android.ui.activities.SearchActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnItemClick;
 import butterknife.Unbinder;
 
 public class SearchFragment extends Fragment {
 
     private Unbinder unbinder;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+//    @BindView(R.id.toolbar)
+//    Toolbar toolbar;
     @BindView(R.id.grid_view)
     GridView gridView;
 
@@ -32,7 +32,7 @@ public class SearchFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         unbinder = ButterKnife.bind(this, view);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        //((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         return view;
     }
 
@@ -40,8 +40,17 @@ public class SearchFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
         gridView.setAdapter(new GridAdapter(getContext()));
+
+        // TODO: Set up listeners on grid and on toolbar searchview -> SearchActivity.newIntent(context, @Nullable String initialSearch)
+    }
+
+    @OnItemClick(R.id.grid_view)
+    void onGridItemClicked(int position) {
+        if (getContext() != null) { // get array of gridItems (same as used in GridAdapter), determine category of search with array
+            String[] gridItems = getContext().getResources().getStringArray(R.array.grid_categories);
+            getContext().startActivity(SearchActivity.newIntentWithSearch(getContext(), gridItems[position]));
+        }
     }
 
     @Override

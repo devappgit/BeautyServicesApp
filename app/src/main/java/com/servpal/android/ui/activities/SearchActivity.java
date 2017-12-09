@@ -1,6 +1,9 @@
 package com.servpal.android.ui.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.servpal.android.adapter.SearchProfessionalsAdapter;
 import com.servpal.android.api.NetworkCallback;
@@ -24,6 +27,16 @@ public class SearchActivity extends AbsRecyclerActivity {
 
     private SearchProfessionalsAdapter adapter;
 
+    public static Intent newIntent(Context context) {
+        return new Intent(context, SearchActivity.class);
+    }
+
+    public static Intent newIntentWithSearch(Context context, String initialSearch) {
+        Intent intent = new Intent(context, SearchActivity.class);
+        intent.putExtra(INITIAL_QUERY, initialSearch);
+        return intent;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,18 +46,20 @@ public class SearchActivity extends AbsRecyclerActivity {
 
         if (getIntent().hasExtra(INITIAL_QUERY)) {
             currentQuery = getIntent().getStringExtra(INITIAL_QUERY);
-        }   // else creates as null
-
-        loadFirstPage();
+            getSearchView().setQuery(currentQuery, false);
+            loadFromSearch(currentQuery);
+        } else {
+            loadFromSearch(null);
+        }
     }
 
     private Call<SearchResult> callProfessionalsSearch(int page, String query) {
         return ServpalHttpClient.getService().findProfessionals(page, query);
     }
 
-    private void loadFirstPage() {
+    private void loadFirstPage(@Nullable String query) {
         getRefreshLayout().setRefreshing(true);
-        callProfessionalsSearch(PAGE_START, currentQuery)
+        callProfessionalsSearch(PAGE_START, query)
                 .enqueue(new NetworkCallback<SearchResult>() {
                     @Override
                     protected void onSuccess(SearchResult response) {
@@ -67,14 +82,14 @@ public class SearchActivity extends AbsRecyclerActivity {
                 });
     }
 
-    private void loadFromSearch(String query) {
+    private void loadFromSearch(@Nullable String query) {
         getRefreshLayout().setRefreshing(true);
         adapter.clear();
         callProfessionalsSearch(PAGE_START, query)
                 .enqueue(new NetworkCallback<SearchResult>() {
                     @Override
                     protected void onSuccess(SearchResult response) {
-                        if (!currentQuery.equals(response.getSearch())) {
+                        if (currentQuery != null && !currentQuery.equals(response.getSearch())) {
                             return; // don't do anything if async responses don't match
                         }
 
@@ -175,7 +190,7 @@ public class SearchActivity extends AbsRecyclerActivity {
         if (TextUtils.isEmpty(query)) {
             Timber.d("Search is EMPTY");
             currentQuery = null;
-            loadFirstPage();
+            loadFromSearch(null);
         } else {
             Timber.d("Search triggered: %s", query);
             currentQuery = query;
