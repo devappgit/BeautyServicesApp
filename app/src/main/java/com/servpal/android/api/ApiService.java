@@ -28,4 +28,7 @@ public interface ApiService {
 
     @GET("professionals/find/{page}")
     Call<SearchResult> findProfessionals(@Path("page") int page, @Query("search") String query);
+
+    @GET("professionals/profile/{id}")  // TODO: Verify this is the correct path, and create a POJO to contain the response.body()
+    Call<Void> getProfessionalProfile(@Path("id") int userId);
 }
