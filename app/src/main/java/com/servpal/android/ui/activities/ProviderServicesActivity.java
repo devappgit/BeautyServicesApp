@@ -93,19 +93,8 @@ public class ProviderServicesActivity extends AppCompatActivity {
         // create fragments with ViewPager
     }
 
-    @OnClick(R.id.provider_hire_button)
-    void onHireMeClicked() {
-        Toast.makeText(this, "Hire Me clicked", Toast.LENGTH_SHORT).show();
-    }
-
     @OnClick(R.id.provider_review_button)
     void onWriteReviewClicked() {
         Toast.makeText(this, "Write a Review", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Timber.d("back pressed");
     }
 }
