@@ -92,9 +92,4 @@ public class ProviderServicesActivity extends AppCompatActivity {
         // generate Tabs
         // create fragments with ViewPager
     }
-
-    @OnClick(R.id.provider_review_button)
-    void onWriteReviewClicked() {
-        Toast.makeText(this, "Write a Review", Toast.LENGTH_SHORT).show();
-    }
 }
