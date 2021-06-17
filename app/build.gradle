@@ -1,18 +1,24 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin'
+apply plugin: 'io.fabric'
+
 buildscript {
+    ext.kotlin_version = '1.4.10'
     repositories {
         maven { url 'https://maven.fabric.io/public' }
+        mavenCentral()
     }
 
     dependencies {
         classpath 'io.fabric.tools:gradle:1.+'
+        //classpath 'com.android.tools.build:gradle:4.0.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
-apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
-
 repositories {
     maven { url 'https://maven.fabric.io/public' }
+    mavenCentral()
 }
 
 
@@ -30,7 +36,7 @@ android {
     compileSdkVersion 27
     buildToolsVersion "27.0.3"
     defaultConfig {
-        applicationId "com.servpal.android"
+        applicationId "com.beautyservices.android"
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 4
@@ -126,4 +132,15 @@ dependencies {
 
     // view libs
     compile 'de.hdodenhof:circleimageview:2.2.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }

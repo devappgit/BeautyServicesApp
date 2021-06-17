@@ -22,11 +22,11 @@
 
 
 ## Retrofit
--keep class com.servpal.android.model.** { *; }
+-keep class com.beautyservices.android.model.** { *; }
 # ^ ProGuard likes to strip out models that are used by Retrofit because they aren't explicitly instantiated.
 # Make sure they're kept in the apk if minify is enabled
 
--keep class com.servpal.android.api.** { *; }
+-keep class com.beautyservices.android.api.** { *; }
 # ^ ProGuard also likes removing annonymous inner classes like callbacks since they're not explicity instantiated.
 
 # Platform calls Class.forName on types which do not exist on Android to determine platform.

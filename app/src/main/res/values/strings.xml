@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Servpal</string>
+    <string name="app_name">Beautyservices</string>
     <string name="title_activity_login">Log in</string>
     <string name="title_activity_signup">Sign Up</string>
 
@@ -61,7 +61,7 @@
     <string name="about">About</string>
     <string name="address">Address</string>
 
-    <string name="settings_about">About Servpal</string>
+    <string name="settings_about">About Beautyservices</string>
     <string name="settings_contact">Contact Us</string>
     <string name="settings_logout">Log out</string>
 </resources>

@@ -5,7 +5,7 @@
     android:id="@+id/login_form"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.servpal.android.ui.activities.launch.LoginActivity">
+    tools:context="com.beautyservices.android.ui.activities.launch.LoginActivity">
 
     <LinearLayout
         android:id="@+id/email_login_form"
