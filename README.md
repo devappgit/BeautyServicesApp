@@ -1,5 +1,5 @@
-# ServpalAndroid
-Servpal Android app
+# BeautyServices 
+BeautyServices Android app
 
 ## Libraries used
 
